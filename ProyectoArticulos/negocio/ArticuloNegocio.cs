@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
@@ -11,8 +12,8 @@ namespace negocio
     {
 
         public List<Articulo> Listar()
-        {   
-            List<Articulo> ListaArticulo = new List<Articulo> ();
+        {
+            List<Articulo> ListaArticulo = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
 
             try {
@@ -33,6 +34,7 @@ namespace negocio
                     Articulo nuevoArticulo = new Articulo();
 
                     nuevoArticulo.Id = (int)datos.Lector["ArticuloId"];
+                    nuevoArticulo.CodigoDeArtculo = (int)datos.Lector["Codigo"];
                     nuevoArticulo.Nombre = (string)datos.Lector["Nombre"];
                     nuevoArticulo.Descripcion = (string)datos.Lector["ArticuloDescripcion"];
                     nuevoArticulo.Precio = (decimal)datos.Lector["Precio"];
@@ -43,7 +45,7 @@ namespace negocio
                     nuevoArticulo.Marca.Descripcion = (string)datos.Lector["MarcaDescripcion"];
 
                     // Categoría
-                    nuevoArticulo.Categoria = new Categoria();  
+                    nuevoArticulo.Categoria = new Categoria();
                     nuevoArticulo.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     nuevoArticulo.Categoria.Descripcion = (string)datos.Lector["CategoriaDescripcion"];
 
@@ -57,8 +59,8 @@ namespace negocio
 
 
                     ListaArticulo.Add(nuevoArticulo);
-   
-            }
+
+                }
 
                 datos.cerrarConexion();
                 return ListaArticulo;
@@ -66,7 +68,7 @@ namespace negocio
             } catch (Exception ex) {
                 throw ex;
             }
-           
+
         }
 
         public void Agregar(Articulo nuevo)
@@ -74,11 +76,16 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) " +
-                  "VALUES ('" + nuevo.CódigoDeArtculo + "', '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', @IdMarca, @IdCategoria, " + nuevo.Precio + ")");
 
-                datos.setearParametro("@IdMarca", nuevo.Marca.Id);
-                datos.setearParametro("@IdCategoria", nuevo.Categoria.Id);
+                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) " +
+                     "VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)");
+
+                datos.setearParametro("@codigo", nuevo.CodigoDeArtculo);
+                datos.setearParametro("@nombre", nuevo.Nombre);
+                datos.setearParametro("@descripcion", nuevo.Descripcion);
+                datos.setearParametro("@idMarca", nuevo.Marca.Id);
+                datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
+                datos.setearParametro("@precio", nuevo.Precio);
 
                 datos.ejecutarAccion();
             }
@@ -93,6 +100,68 @@ namespace negocio
             }
 
         }
+
+        public void Actualizar(Articulo art) {
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+
+                datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, Precio = @precio WHERE Id = @id");
+
+                datos.setearParametro("@id", art.Id);
+                datos.setearParametro("@nombre", art.Nombre);
+                datos.setearParametro("@codigo", art.CodigoDeArtculo);
+                datos.setearParametro("@descripcion", art.Descripcion);
+                datos.setearParametro("@idMarca", art.Marca.Id);
+                datos.setearParametro("@idCategoria", art.Categoria.Id);
+                datos.setearParametro("@precio", art.Precio);
+
+                datos.ejecutarAccion();
+
+            }
+
+            catch (Exception ex) {
+
+                throw ex;
+
+            }
+            finally
+            {
+
+                datos.cerrarConexion();
+
+            }
+
+        }
+
+
+        public void Eliminar(int id)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+
+
+            try {
+
+                datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+
+
+            } catch (Exception ex) {
+
+                throw ex;
+            
+            }
+            finally
+            {
+
+                datos.cerrarConexion();
+            }
+        } 
 
     }
 }
