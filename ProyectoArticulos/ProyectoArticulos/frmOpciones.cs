@@ -84,7 +84,9 @@ namespace ProyectoArticulos
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
-       
+        private void pctImagen_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
