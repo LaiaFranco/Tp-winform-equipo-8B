@@ -15,67 +15,76 @@ namespace negocio
         {
             List<Articulo> ListaArticulo = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
-            
 
-            try {
+            try
+            {
                 datos.setearConsulta(@"SELECT A.Id AS ArticuloId, A.Codigo, A.Nombre, A.Descripcion AS ArticuloDescripcion, 
-                              A.Precio, A.IdMarca, M.Descripcion AS MarcaDescripcion, 
-                              A.IdCategoria, C.Descripcion AS CategoriaDescripcion, 
-                              I.Id AS ImagenId, I.ImagenUrl
-                       FROM ARTICULOS A
-                       LEFT JOIN MARCAS M ON A.IdMarca = M.Id 
-                       LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id 
-                       LEFT JOIN IMAGENES I ON I.IdArticulo = A.Id
-                       ORDER BY A.Id");
+                         A.Precio, A.IdMarca, M.Descripcion AS MarcaDescripcion, 
+                         A.IdCategoria, C.Descripcion AS CategoriaDescripcion, 
+                         I.Id AS ImagenId, I.ImagenUrl
+                  FROM ARTICULOS A
+                  LEFT JOIN MARCAS M ON A.IdMarca = M.Id 
+                  LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id 
+                  LEFT JOIN IMAGENES I ON I.IdArticulo = A.Id  
+                  ORDER BY A.Id");
 
                 datos.ejecutarLectura();
 
-                while (datos.Lector.Read())
+
+                if (datos.Lector != null)
                 {
-                    Articulo nuevoArticulo = new Articulo();
-
-                    nuevoArticulo.Id = (int)datos.Lector["ArticuloId"];
-                    nuevoArticulo.CodigoDeArtculo = (string)datos.Lector["Codigo"];
-                    nuevoArticulo.Nombre = (string)datos.Lector["Nombre"];
-                    nuevoArticulo.Descripcion = (string)datos.Lector["ArticuloDescripcion"];
-                    nuevoArticulo.Precio = (decimal)datos.Lector["Precio"];
-
-                    // Marca
-                    if (datos.Lector["IdMarca"] != DBNull.Value)
+                    while (datos.Lector.Read())
                     {
-                        nuevoArticulo.Marca = new Marca();
-                        nuevoArticulo.Marca.Id = (int)datos.Lector["IdMarca"];
-                        nuevoArticulo.Marca.Descripcion = (string)datos.Lector["MarcaDescripcion"];
 
-                    }
-                    // Categoria
-                    if (datos.Lector["IdCategoria"] != DBNull.Value)
-                    {
-                        nuevoArticulo.Categoria = new Categoria();
-                        nuevoArticulo.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                        nuevoArticulo.Categoria.Descripcion = (string)datos.Lector["CategoriaDescripcion"];
-                    }
+                        Articulo nuevoArticulo = new Articulo();
 
-                    // Imagen
-                    if (datos.Lector["ImagenId"] != DBNull.Value)
-                    {
-                        nuevoArticulo.Imagen = new Imagen();
-                        nuevoArticulo.Imagen.Id = (int)datos.Lector["ImagenId"];
-                        nuevoArticulo.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
-                    }
 
-                    ListaArticulo.Add(nuevoArticulo);
+                        nuevoArticulo.Id = (int)(datos.Lector["ArticuloId"]);
+                        nuevoArticulo.CodigoDeArtculo = datos.Lector["Codigo"].ToString();
+                        nuevoArticulo.Nombre = datos.Lector["Nombre"].ToString();
+                        nuevoArticulo.Descripcion = datos.Lector["ArticuloDescripcion"].ToString();
+                        nuevoArticulo.Precio = (decimal)(datos.Lector["Precio"]);
+
+                        // Marca
+                        if (datos.Lector["IdMarca"] != DBNull.Value)
+                        {
+                            nuevoArticulo.Marca = new Marca();
+                            nuevoArticulo.Marca.Id = (int)(datos.Lector["IdMarca"]);
+                            nuevoArticulo.Marca.Descripcion = datos.Lector["MarcaDescripcion"].ToString();
+                        }
+
+                        // Categoria
+                        if (datos.Lector["IdCategoria"] != DBNull.Value)
+                        {
+                            nuevoArticulo.Categoria = new Categoria();
+                            nuevoArticulo.Categoria.Id = (int)(datos.Lector["IdCategoria"]);
+                            nuevoArticulo.Categoria.Descripcion = datos.Lector["CategoriaDescripcion"].ToString();
+                        }
+
+                        // Imagen
+                        if (datos.Lector["ImagenId"] != DBNull.Value)
+                        {
+                            nuevoArticulo.Imagen = new Imagen();
+                            nuevoArticulo.Imagen.Id = (int)(datos.Lector["ImagenId"]);
+                            nuevoArticulo.Imagen.UrlImagen = datos.Lector["ImagenUrl"].ToString();
+                        }
+
+                        ListaArticulo.Add(nuevoArticulo);
+                    }
                 }
 
-                datos.cerrarConexion();
                 return ListaArticulo;
-
-            } catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
-                
+
                 throw ex;
             }
+            finally
+            {
 
+                datos.cerrarConexion();
+            }
         }
 
         public void Agregar(Articulo nuevo)

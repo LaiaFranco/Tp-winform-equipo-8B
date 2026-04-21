@@ -22,6 +22,7 @@ namespace ProyectoArticulos
         private void cargar()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
+
             try
             {
                 listaArticulos = negocio.Listar();
