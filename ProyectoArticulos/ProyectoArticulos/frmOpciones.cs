@@ -27,7 +27,7 @@ namespace ProyectoArticulos
             {
                 listaArticulos = negocio.Listar();
                 dgvArticulos.DataSource = listaArticulos;
-                //ocultarColumnas();
+                ocultarColumnas();
                 cargarImagen(listaArticulos[0].Imagen.UrlImagen);
             }
             catch (Exception ex)
@@ -77,5 +77,14 @@ namespace ProyectoArticulos
                 pctImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
             }
         }
+
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["Imagen"].Visible = false;
+            dgvArticulos.Columns["Id"].Visible = false;
+        }
+
+       
+
     }
 }
