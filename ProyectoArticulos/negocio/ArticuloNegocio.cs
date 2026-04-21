@@ -15,28 +15,34 @@ namespace negocio
         {
             List<Articulo> ListaArticulo = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
-
+                        
             try
             {
                 datos.setearConsulta(@"SELECT A.Id AS ArticuloId, A.Codigo, A.Nombre, A.Descripcion AS ArticuloDescripcion, 
-                         A.Precio, A.IdMarca, M.Descripcion AS MarcaDescripcion, 
-                         A.IdCategoria, C.Descripcion AS CategoriaDescripcion, 
-                         I.Id AS ImagenId, I.ImagenUrl
-                  FROM ARTICULOS A
-                  LEFT JOIN MARCAS M ON A.IdMarca = M.Id 
-                  LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id 
-                  LEFT JOIN IMAGENES I ON I.IdArticulo = A.Id  
-                  ORDER BY A.Id");
+                                     A.Precio, A.IdMarca, M.Descripcion AS MarcaDescripcion, 
+                                     A.IdCategoria, C.Descripcion AS CategoriaDescripcion, 
+                                     I.Id AS ImagenId, I.ImagenUrl
+                              FROM ARTICULOS A
+                              LEFT JOIN MARCAS M ON A.IdMarca = M.Id 
+                              LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id 
+                              OUTER APPLY (
+                                  SELECT TOP 1 Id, ImagenUrl
+                                  FROM IMAGENES
+                                  WHERE IdArticulo = A.Id
+                                  ORDER BY Id
+                              ) I
+                              ORDER BY A.Id");
 
                 datos.ejecutarLectura();
 
-                  
+
                 if (datos.Lector != null)
                 {
                     while (datos.Lector.Read())
                     {
-                       
+
                         Articulo nuevoArticulo = new Articulo();
+
 
                         nuevoArticulo.Id = (int)(datos.Lector["ArticuloId"]);
                         nuevoArticulo.CodigoDeArtculo = datos.Lector["Codigo"].ToString();
@@ -77,11 +83,11 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw ex; 
+                throw ex;
             }
             finally
             {
-              
+
                 datos.cerrarConexion();
             }
         }

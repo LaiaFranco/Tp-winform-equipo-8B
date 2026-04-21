@@ -14,7 +14,7 @@ namespace ProyectoArticulos
 {
     public partial class frmOpciones : Form
     {
-        private List<Articulo>listaArticulos; 
+        private List<Articulo> listaArticulos;
         public frmOpciones()
         {
             InitializeComponent();
@@ -22,13 +22,13 @@ namespace ProyectoArticulos
         private void cargar()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            try { 
-            
-           
-                dgvArticulos.DataSource = negocio.Listar();
-               
-                //ocultarColumnas();
-                //cargarImagen(listaPokemon[0].UrlImagen);
+
+            try
+            {
+                listaArticulos = negocio.Listar();
+                dgvArticulos.DataSource = listaArticulos;
+                ocultarColumnas();
+                cargarImagen(listaArticulos[0].Imagen.UrlImagen);
             }
             catch (Exception ex)
             {
@@ -47,7 +47,12 @@ namespace ProyectoArticulos
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            // Evento reservado para carga de imagen/acciones futuras.
+
+            if (dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.Imagen.UrlImagen);
+            }
         }
 
         private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -59,5 +64,27 @@ namespace ProyectoArticulos
         {
             cargar();  
         }
+
+        
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pctImagen.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pctImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["Imagen"].Visible = false;
+            dgvArticulos.Columns["Id"].Visible = false;
+        }
+
+       
+
     }
 }
