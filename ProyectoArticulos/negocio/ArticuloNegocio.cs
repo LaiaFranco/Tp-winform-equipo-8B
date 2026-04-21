@@ -38,7 +38,6 @@ namespace negocio
                        
                         Articulo nuevoArticulo = new Articulo();
 
-                        
                         nuevoArticulo.Id = (int)(datos.Lector["ArticuloId"]);
                         nuevoArticulo.CodigoDeArtculo = datos.Lector["Codigo"].ToString();
                         nuevoArticulo.Nombre = datos.Lector["Nombre"].ToString();
