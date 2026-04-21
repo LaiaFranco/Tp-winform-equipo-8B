@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using dominio;
 
 namespace negocio
@@ -15,16 +15,22 @@ namespace negocio
         {
             List<Articulo> ListaArticulo = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
+            
 
             try {
                 datos.setearConsulta(@"SELECT A.Id AS ArticuloId, A.Codigo, A.Nombre, A.Descripcion AS ArticuloDescripcion, 
                               A.Precio, A.IdMarca, M.Descripcion AS MarcaDescripcion, 
                               A.IdCategoria, C.Descripcion AS CategoriaDescripcion, 
-                              I.Id AS ImagenId, I.ImagenUrl 
+                              I.Id AS ImagenId, I.ImagenUrl
                        FROM ARTICULOS A
                        LEFT JOIN MARCAS M ON A.IdMarca = M.Id 
                        LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id 
-                       LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo 
+                       OUTER APPLY (
+                            SELECT TOP 1 Id, ImagenUrl
+                            FROM IMAGENES
+                            WHERE IdArticulo = A.Id
+                            ORDER BY Id
+                       ) I
                        ORDER BY A.Id");
 
                 datos.ejecutarLectura();
@@ -34,38 +40,44 @@ namespace negocio
                     Articulo nuevoArticulo = new Articulo();
 
                     nuevoArticulo.Id = (int)datos.Lector["ArticuloId"];
-                    nuevoArticulo.CodigoDeArtculo = (int)datos.Lector["Codigo"];
+                    nuevoArticulo.CodigoDeArtculo = (string)datos.Lector["Codigo"];
                     nuevoArticulo.Nombre = (string)datos.Lector["Nombre"];
                     nuevoArticulo.Descripcion = (string)datos.Lector["ArticuloDescripcion"];
                     nuevoArticulo.Precio = (decimal)datos.Lector["Precio"];
 
                     // Marca
-                    nuevoArticulo.Marca = new Marca();
-                    nuevoArticulo.Marca.Id = (int)datos.Lector["IdMarca"];
-                    nuevoArticulo.Marca.Descripcion = (string)datos.Lector["MarcaDescripcion"];
+                    if (!(datos.Lector["IdMarca"] is DBNull))
+                    {
+                        nuevoArticulo.Marca = new Marca();
+                        nuevoArticulo.Marca.Id = (int)datos.Lector["IdMarca"];
+                        nuevoArticulo.Marca.Descripcion = (string)datos.Lector["MarcaDescripcion"];
 
-                    // Categoría
-                    nuevoArticulo.Categoria = new Categoria();
-                    nuevoArticulo.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                    nuevoArticulo.Categoria.Descripcion = (string)datos.Lector["CategoriaDescripcion"];
+                    }
+                    // Categoria
+                    if (!(datos.Lector["IdCategoria"] is DBNull))
+                    {
+                        nuevoArticulo.Categoria = new Categoria();
+                        nuevoArticulo.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                        nuevoArticulo.Categoria.Descripcion = (string)datos.Lector["CategoriaDescripcion"];
+                    }
 
-                    // Imagen 
-                    if (datos.Lector["ImagenId"] != DBNull.Value)
+                    // Imagen
+                    if (!(datos.Lector["ImagenId"] is DBNull))
                     {
                         nuevoArticulo.Imagen = new Imagen();
                         nuevoArticulo.Imagen.Id = (int)datos.Lector["ImagenId"];
                         nuevoArticulo.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
                     }
 
-
                     ListaArticulo.Add(nuevoArticulo);
-
                 }
 
                 datos.cerrarConexion();
                 return ListaArticulo;
 
-            } catch (Exception ex) {
+            } catch (Exception ex) 
+            {
+                
                 throw ex;
             }
 

@@ -25,7 +25,19 @@ namespace ProyectoArticulos
             try
             {
                 listaArticulos = negocio.Listar();
-                dgvArticulos.DataSource = listaArticulos;
+                dgvArticulos.AutoGenerateColumns = true;
+                dgvArticulos.DataSource = null;
+                dgvArticulos.DataSource = listaArticulos.Select(x => new
+                {
+                    x.Id,
+                    x.CodigoDeArtculo,
+                    x.Nombre,
+                    x.Descripcion,
+                    Marca = x.Marca != null ? x.Marca.Descripcion : "",
+                    Categoria = x.Categoria != null ? x.Categoria.Descripcion : "",
+                    x.Precio
+                }).ToList();
+                MessageBox.Show("Cantidad: " + listaArticulos.Count);
                 //ocultarColumnas();
                 //cargarImagen(listaPokemon[0].UrlImagen);
             }
@@ -46,11 +58,7 @@ namespace ProyectoArticulos
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvArticulos.CurrentRow != null)
-            {
-                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                //cargarImagen(seleccionado.UrlImagen);
-            }
+            // Evento reservado para carga de imagen/acciones futuras.
         }
 
         private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -60,7 +68,7 @@ namespace ProyectoArticulos
 
         private void frmOpciones_Load(object sender, EventArgs e)
         {
-
+            cargar();  
         }
     }
 }
