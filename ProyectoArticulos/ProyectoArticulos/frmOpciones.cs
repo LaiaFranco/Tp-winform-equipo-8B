@@ -14,7 +14,7 @@ namespace ProyectoArticulos
 {
     public partial class frmOpciones : Form
     {
-        private List<Articulo>listaArticulos; 
+        private List<Articulo> listaArticulos;
         public frmOpciones()
         {
             InitializeComponent();
@@ -25,19 +25,7 @@ namespace ProyectoArticulos
             try
             {
                 listaArticulos = negocio.Listar();
-                dgvArticulos.AutoGenerateColumns = true;
-                dgvArticulos.DataSource = null;
-                dgvArticulos.DataSource = listaArticulos.Select(x => new
-                {
-                    x.Id,
-                    x.CodigoDeArtculo,
-                    x.Nombre,
-                    x.Descripcion,
-                    Marca = x.Marca != null ? x.Marca.Descripcion : "",
-                    Categoria = x.Categoria != null ? x.Categoria.Descripcion : "",
-                    x.Precio
-                }).ToList();
-                MessageBox.Show("Cantidad: " + listaArticulos.Count);
+                dgvArticulos.DataSource = listaArticulos;
                 //ocultarColumnas();
                 //cargarImagen(listaPokemon[0].UrlImagen);
             }

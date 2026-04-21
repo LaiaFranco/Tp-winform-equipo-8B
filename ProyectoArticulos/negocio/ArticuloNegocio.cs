@@ -25,12 +25,7 @@ namespace negocio
                        FROM ARTICULOS A
                        LEFT JOIN MARCAS M ON A.IdMarca = M.Id 
                        LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id 
-                       OUTER APPLY (
-                            SELECT TOP 1 Id, ImagenUrl
-                            FROM IMAGENES
-                            WHERE IdArticulo = A.Id
-                            ORDER BY Id
-                       ) I
+                       LEFT JOIN IMAGENES I ON I.IdArticulo = A.Id
                        ORDER BY A.Id");
 
                 datos.ejecutarLectura();
@@ -46,7 +41,7 @@ namespace negocio
                     nuevoArticulo.Precio = (decimal)datos.Lector["Precio"];
 
                     // Marca
-                    if (!(datos.Lector["IdMarca"] is DBNull))
+                    if (datos.Lector["IdMarca"] != DBNull.Value)
                     {
                         nuevoArticulo.Marca = new Marca();
                         nuevoArticulo.Marca.Id = (int)datos.Lector["IdMarca"];
@@ -54,7 +49,7 @@ namespace negocio
 
                     }
                     // Categoria
-                    if (!(datos.Lector["IdCategoria"] is DBNull))
+                    if (datos.Lector["IdCategoria"] != DBNull.Value)
                     {
                         nuevoArticulo.Categoria = new Categoria();
                         nuevoArticulo.Categoria.Id = (int)datos.Lector["IdCategoria"];
@@ -62,7 +57,7 @@ namespace negocio
                     }
 
                     // Imagen
-                    if (!(datos.Lector["ImagenId"] is DBNull))
+                    if (datos.Lector["ImagenId"] != DBNull.Value)
                     {
                         nuevoArticulo.Imagen = new Imagen();
                         nuevoArticulo.Imagen.Id = (int)datos.Lector["ImagenId"];
