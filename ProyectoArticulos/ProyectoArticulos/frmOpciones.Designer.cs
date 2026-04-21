@@ -28,63 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOpciones));
-            this.pctOpciones = new System.Windows.Forms.PictureBox();
-            this.btnListado = new System.Windows.Forms.Button();
-            this.btnBusqueda = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.bntEliminar = new System.Windows.Forms.Button();
-            this.btnVerDetalle = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pctOpciones)).BeginInit();
+            this.dgvArticulos = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pctOpciones
-            // 
-            this.pctOpciones.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pctOpciones.ErrorImage")));
-            this.pctOpciones.Image = ((System.Drawing.Image)(resources.GetObject("pctOpciones.Image")));
-            this.pctOpciones.InitialImage = ((System.Drawing.Image)(resources.GetObject("pctOpciones.InitialImage")));
-            this.pctOpciones.Location = new System.Drawing.Point(-2, 0);
-            this.pctOpciones.Name = "pctOpciones";
-            this.pctOpciones.Size = new System.Drawing.Size(785, 288);
-            this.pctOpciones.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctOpciones.TabIndex = 0;
-            this.pctOpciones.TabStop = false;
-            // 
-            // btnListado
-            // 
-            this.btnListado.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnListado.Location = new System.Drawing.Point(567, 314);
-            this.btnListado.Name = "btnListado";
-            this.btnListado.Size = new System.Drawing.Size(129, 55);
-            this.btnListado.TabIndex = 1;
-            this.btnListado.Text = "Listado";
-            this.btnListado.UseVisualStyleBackColor = false;
-            // 
-            // btnBusqueda
-            // 
-            this.btnBusqueda.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnBusqueda.Location = new System.Drawing.Point(325, 314);
-            this.btnBusqueda.Name = "btnBusqueda";
-            this.btnBusqueda.Size = new System.Drawing.Size(129, 55);
-            this.btnBusqueda.TabIndex = 2;
-            this.btnBusqueda.Text = "Busqueda";
-            this.btnBusqueda.UseVisualStyleBackColor = false;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnModificar.Location = new System.Drawing.Point(70, 419);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(129, 52);
-            this.btnModificar.TabIndex = 3;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = false;
             // 
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAgregar.Location = new System.Drawing.Point(70, 314);
+            this.btnAgregar.Location = new System.Drawing.Point(56, 445);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(124, 55);
             this.btnAgregar.TabIndex = 4;
@@ -92,26 +49,49 @@
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // bntEliminar
+            // dgvArticulos
             // 
-            this.bntEliminar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.bntEliminar.Location = new System.Drawing.Point(325, 416);
-            this.bntEliminar.Name = "bntEliminar";
-            this.bntEliminar.Size = new System.Drawing.Size(129, 55);
-            this.bntEliminar.TabIndex = 5;
-            this.bntEliminar.Text = "Eliminar";
-            this.bntEliminar.UseVisualStyleBackColor = false;
-            this.bntEliminar.Click += new System.EventHandler(this.bntEliminar_Click);
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvArticulos.Location = new System.Drawing.Point(26, 75);
+            this.dgvArticulos.Name = "dgvArticulos";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArticulos.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvArticulos.RowHeadersWidth = 62;
+            this.dgvArticulos.RowTemplate.Height = 28;
+            this.dgvArticulos.Size = new System.Drawing.Size(753, 364);
+            this.dgvArticulos.TabIndex = 5;
+            this.dgvArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellContentClick);
+            this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
-            // btnVerDetalle
+            // pictureBox1
             // 
-            this.btnVerDetalle.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnVerDetalle.Location = new System.Drawing.Point(567, 416);
-            this.btnVerDetalle.Name = "btnVerDetalle";
-            this.btnVerDetalle.Size = new System.Drawing.Size(129, 55);
-            this.btnVerDetalle.TabIndex = 6;
-            this.btnVerDetalle.Text = "VerDetalle";
-            this.btnVerDetalle.UseVisualStyleBackColor = false;
+            this.pictureBox1.Location = new System.Drawing.Point(805, 75);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(319, 364);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // frmOpciones
             // 
@@ -119,32 +99,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(783, 568);
-            this.Controls.Add(this.btnVerDetalle);
-            this.Controls.Add(this.bntEliminar);
+            this.ClientSize = new System.Drawing.Size(1155, 568);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.dgvArticulos);
             this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnBusqueda);
-            this.Controls.Add(this.btnListado);
-            this.Controls.Add(this.pctOpciones);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmOpciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Opciones";
-            ((System.ComponentModel.ISupportInitialize)(this.pctOpciones)).EndInit();
+            this.Load += new System.EventHandler(this.frmOpciones_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pctOpciones;
-        private System.Windows.Forms.Button btnListado;
-        private System.Windows.Forms.Button btnBusqueda;
-        private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button bntEliminar;
-        private System.Windows.Forms.Button btnVerDetalle;
+        private System.Windows.Forms.DataGridView dgvArticulos;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
