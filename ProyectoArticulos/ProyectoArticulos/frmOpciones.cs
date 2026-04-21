@@ -28,7 +28,7 @@ namespace ProyectoArticulos
                 listaArticulos = negocio.Listar();
                 dgvArticulos.DataSource = listaArticulos;
                 //ocultarColumnas();
-                //cargarImagen(listaPokemon[0].UrlImagen);
+                cargarImagen(listaArticulos[0].Imagen.UrlImagen);
             }
             catch (Exception ex)
             {
@@ -47,7 +47,12 @@ namespace ProyectoArticulos
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            // Evento reservado para carga de imagen/acciones futuras.
+
+            if (dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.Imagen.UrlImagen);
+            }
         }
 
         private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -58,6 +63,19 @@ namespace ProyectoArticulos
         private void frmOpciones_Load(object sender, EventArgs e)
         {
             cargar();  
+        }
+
+        
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pctImagen.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pctImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
         }
     }
 }
