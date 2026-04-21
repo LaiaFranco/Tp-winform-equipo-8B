@@ -22,22 +22,11 @@ namespace ProyectoArticulos
         private void cargar()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            try
-            {
-                listaArticulos = negocio.Listar();
-                dgvArticulos.AutoGenerateColumns = true;
-                dgvArticulos.DataSource = null;
-                dgvArticulos.DataSource = listaArticulos.Select(x => new
-                {
-                    x.Id,
-                    x.CodigoDeArtculo,
-                    x.Nombre,
-                    x.Descripcion,
-                    Marca = x.Marca != null ? x.Marca.Descripcion : "",
-                    Categoria = x.Categoria != null ? x.Categoria.Descripcion : "",
-                    x.Precio
-                }).ToList();
-                MessageBox.Show("Cantidad: " + listaArticulos.Count);
+            try { 
+            
+           
+                dgvArticulos.DataSource = negocio.Listar();
+               
                 //ocultarColumnas();
                 //cargarImagen(listaPokemon[0].UrlImagen);
             }
