@@ -115,6 +115,43 @@ namespace ProyectoArticulos
                 MessageBox.Show(ex.ToString()); 
             }
         }
+
+        private void marcaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          
+            
+        }
+
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void listarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCategoria ViewCate = new frmCategoria();
+            ViewCate.TopMost = true;
+            ViewCate.Show();
+          
+        }
+
+        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCrearCategoria ViewCrear  = new frmCrearCategoria();
+
+            ViewCrear.TopMost = true;
+            ViewCrear.Show();
+        }
     }
 
 

@@ -31,7 +31,7 @@ namespace negocio
                                   WHERE IdArticulo = A.Id
                                   ORDER BY Id
                               ) I
-                              ORDER BY A.Id");
+                              ORDER BY A.Id");  
 
                 datos.ejecutarLectura();
 
