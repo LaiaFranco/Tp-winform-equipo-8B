@@ -42,24 +42,33 @@ namespace ProyectoArticulos
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            frmAltaArticulo altaArticulo = new frmAltaArticulo();
+            altaArticulo.ShowDialog(); 
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-
-            if (dgvArticulos.CurrentRow != null)
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            try
             {
-                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.Imagen.UrlImagen);
+                if (seleccionado.Imagen != null &&
+                    !string.IsNullOrWhiteSpace(seleccionado.Imagen.UrlImagen))
+                {
+                    pctImagen.LoadAsync(seleccionado.Imagen.UrlImagen);
+                }
+                else
+                {
+                    pctImagen.Load("https://via.placeholder.com/150");
+                }
             }
+            catch
+            {
+                pctImagen.Load("https://via.placeholder.com/150");
+            }
+
         }
 
-        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+       
         private void frmOpciones_Load(object sender, EventArgs e)
         {
             cargar();  
@@ -84,7 +93,7 @@ namespace ProyectoArticulos
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
-        private void pctImagen_Click(object sender, EventArgs e)
+        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
