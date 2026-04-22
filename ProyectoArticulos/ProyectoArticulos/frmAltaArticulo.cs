@@ -64,16 +64,8 @@ namespace ProyectoArticulos
                     cargarImagen(articulo.Imagen.UrlImagen);
                     cmbNMarca.SelectedValue = articulo.Marca.Id;
                     cmbCategoria.SelectedValue = articulo.Categoria.Id;
-                    try
-                    {
-                        articulo.Precio = decimal.Parse(txtPrecio.Text);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Ingresá un precio válido");
-                        return;
-                    }
-
+                    txtPrecio.Text = articulo.Precio.ToString(); 
+                  
                 }
             }
             catch (Exception ex)
@@ -137,15 +129,10 @@ namespace ProyectoArticulos
                 articulo.Imagen.UrlImagen = txtURLImagen.Text;
                 articulo.Marca = (Marca)cmbNMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cmbCategoria.SelectedItem;
-                try
-                {
+               
                     articulo.Precio = decimal.Parse(txtPrecio.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Ingresá un precio válido");
-                    return;
-                }
+                
+                
 
                 if (articulo.Id != 0)
                 {

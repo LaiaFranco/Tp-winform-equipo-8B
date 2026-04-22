@@ -81,13 +81,7 @@ namespace ProyectoArticulos
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
-        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-
-
+       
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
