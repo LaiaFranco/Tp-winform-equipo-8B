@@ -42,30 +42,27 @@ namespace ProyectoArticulos
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            frmAltaArticulo altaArticulo = new frmAltaArticulo();
+            altaArticulo.ShowDialog(this);
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-
             if (dgvArticulos.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 cargarImagen(seleccionado.Imagen.UrlImagen);
             }
-        }
-
-        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
         }
+
 
         private void frmOpciones_Load(object sender, EventArgs e)
         {
-            cargar();  
+            cargar();
         }
 
-        
+
         private void cargarImagen(string imagen)
         {
             try
@@ -84,9 +81,42 @@ namespace ProyectoArticulos
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
-        private void pctImagen_Click(object sender, EventArgs e)
+       
+        private void btnModificar_Click(object sender, EventArgs e)
         {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            modificar.ShowDialog(this);
+            cargar();
+        }
+
+        private void btnEliminarFisico_Click(object sender, EventArgs e)
+        {
+            eliminar(true); 
 
         }
+        private void eliminar(bool logico = false)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo articulo = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("¿Estas seguro/a de querer eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    negocio.Eliminar(articulo.Id);
+                    cargar(); 
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString()); 
+            }
+        }
     }
+
+
+
 }

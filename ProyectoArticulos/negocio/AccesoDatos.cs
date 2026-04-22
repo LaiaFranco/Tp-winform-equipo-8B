@@ -57,6 +57,13 @@ namespace negocio
                 throw ex;
             }
         }
+        public int EjecutarScalar()
+        {
+            comando.Connection = conexion;
+            conexion.Open(); 
+            return (int)comando.ExecuteScalar();
+        }
+        
 
         public void setearParametro(string nombre, object valor)
         {
