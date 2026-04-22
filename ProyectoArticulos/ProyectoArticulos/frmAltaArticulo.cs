@@ -55,8 +55,8 @@ namespace ProyectoArticulos
                     txtCodigo.Text = articulo.CodigoDeArtculo.ToString();
                     txtNombre.Text = articulo.Nombre.ToString();
                     txtDescripcion.Text = articulo.Descripcion.ToString();
-                    //txtUrlImagen.Text = pokemon.UrlImagen;
-                    //cargarImagen(pokemon.UrlImagen);
+                    txtURLImagen.Text = articulo.Imagen.UrlImagen;
+                    cargarImagen(articulo.Imagen.UrlImagen);
                     cmbNMarca.SelectedValue = articulo.Marca.Id;
                     cmbCategoria.SelectedValue = articulo.Categoria.Id;
                     try
@@ -121,15 +121,26 @@ namespace ProyectoArticulos
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                if (articulo == null)
+                if (articulo == null) 
                     articulo = new Articulo();
 
                 articulo.CodigoDeArtculo = txtCodigo.Text.ToUpper();
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-                //articulo.UrlImagen = txtUrlImagen.Text;
+                if (articulo.Imagen == null)
+                    articulo.Imagen = new Imagen(); 
+                articulo.Imagen.UrlImagen = txtURLImagen.Text;
                 articulo.Marca = (Marca)cmbNMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cmbCategoria.SelectedItem;
+                try
+                {
+                    articulo.Precio = decimal.Parse(txtPrecio.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Ingresá un precio válido");
+                    return;
+                }
 
                 if (articulo.Id != 0)
                 {
@@ -167,6 +178,38 @@ namespace ProyectoArticulos
                 Close();
 
             }
+        }
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxImagen.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+               pbxImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg;|png|*.png";
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtURLImagen.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+
+                //guardo la imagen
+                //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+            }
+
+        }
+
+        private void txtURLImagen_Leave(object sender, EventArgs e)
+        {
+            cargarImagen(txtURLImagen.Text);
         }
     }
 }

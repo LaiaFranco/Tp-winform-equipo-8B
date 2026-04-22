@@ -45,6 +45,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblUrlImagen = new System.Windows.Forms.Label();
             this.txtURLImagen = new System.Windows.Forms.TextBox();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
+            this.pbxImagen = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -107,7 +110,7 @@
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(48, 226);
+            this.lblDescripcion.Location = new System.Drawing.Point(48, 436);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(96, 20);
             this.lblDescripcion.TabIndex = 6;
@@ -147,7 +150,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(170, 226);
+            this.txtDescripcion.Location = new System.Drawing.Point(170, 436);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(260, 26);
             this.txtDescripcion.TabIndex = 11;
@@ -181,7 +184,7 @@
             // lblUrlImagen
             // 
             this.lblUrlImagen.AutoSize = true;
-            this.lblUrlImagen.Location = new System.Drawing.Point(36, 436);
+            this.lblUrlImagen.Location = new System.Drawing.Point(36, 228);
             this.lblUrlImagen.Name = "lblUrlImagen";
             this.lblUrlImagen.Size = new System.Drawing.Size(108, 20);
             this.lblUrlImagen.TabIndex = 15;
@@ -189,17 +192,39 @@
             // 
             // txtURLImagen
             // 
-            this.txtURLImagen.Location = new System.Drawing.Point(170, 433);
+            this.txtURLImagen.Location = new System.Drawing.Point(170, 228);
             this.txtURLImagen.Name = "txtURLImagen";
             this.txtURLImagen.Size = new System.Drawing.Size(260, 26);
             this.txtURLImagen.TabIndex = 16;
+            this.txtURLImagen.Leave += new System.EventHandler(this.txtURLImagen_Leave);
+            // 
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.Location = new System.Drawing.Point(445, 225);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(32, 32);
+            this.btnAgregarImagen.TabIndex = 17;
+            this.btnAgregarImagen.Text = "+";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
+            // 
+            // pbxImagen
+            // 
+            this.pbxImagen.Location = new System.Drawing.Point(533, 133);
+            this.pbxImagen.Name = "pbxImagen";
+            this.pbxImagen.Size = new System.Drawing.Size(339, 303);
+            this.pbxImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxImagen.TabIndex = 18;
+            this.pbxImagen.TabStop = false;
             // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(533, 597);
+            this.ClientSize = new System.Drawing.Size(924, 597);
+            this.Controls.Add(this.pbxImagen);
+            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.txtURLImagen);
             this.Controls.Add(this.lblUrlImagen);
             this.Controls.Add(this.btnCancelar);
@@ -223,6 +248,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Articulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,5 +273,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblUrlImagen;
         private System.Windows.Forms.TextBox txtURLImagen;
+        private System.Windows.Forms.Button btnAgregarImagen;
+        private System.Windows.Forms.PictureBox pbxImagen;
     }
 }

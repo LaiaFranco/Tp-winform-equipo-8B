@@ -43,7 +43,7 @@ namespace ProyectoArticulos
         private void button1_Click(object sender, EventArgs e)
         {
             frmAltaArticulo altaArticulo = new frmAltaArticulo();
-            altaArticulo.ShowDialog(); 
+            altaArticulo.ShowDialog(this); 
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -58,12 +58,12 @@ namespace ProyectoArticulos
                 }
                 else
                 {
-                    pctImagen.Load("https://via.placeholder.com/150");
+                    pctImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
                 }
             }
             catch
             {
-                pctImagen.Load("https://via.placeholder.com/150");
+                pctImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
             }
 
         }
@@ -94,6 +94,11 @@ namespace ProyectoArticulos
         }
 
         private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pctImagen_Click(object sender, EventArgs e)
         {
 
         }
