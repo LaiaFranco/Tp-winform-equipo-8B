@@ -48,22 +48,10 @@ namespace ProyectoArticulos
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            try
+            if (dgvArticulos.CurrentRow != null)
             {
-                if (seleccionado.Imagen != null &&
-                    !string.IsNullOrWhiteSpace(seleccionado.Imagen.UrlImagen))
-                {
-                    pctImagen.LoadAsync(seleccionado.Imagen.UrlImagen);
-                }
-                else
-                {
-                    pctImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
-                }
-            }
-            catch
-            {
-                pctImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.Imagen.UrlImagen);
             }
 
         }
