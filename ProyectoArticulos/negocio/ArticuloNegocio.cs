@@ -173,6 +173,7 @@ namespace negocio
                 datos.setearParametro("@idMarca",nuevo.Marca.Id);
                 datos.setearParametro("@IdCategoria",nuevo.Categoria.Id);
                 datos.setearParametro("@precio", nuevo.Precio);
+                datos.setearParametro("@Id", nuevo.Id); 
 
                 datos.ejecutarAccion(); 
 

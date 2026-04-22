@@ -21,7 +21,12 @@ namespace ProyectoArticulos
         {
             InitializeComponent();
         }
-
+        public frmAltaArticulo(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+            Text = "Modificar Articulo";
+        }
         private void lblPrecio_Click(object sender, EventArgs e)
         {
 
@@ -144,7 +149,7 @@ namespace ProyectoArticulos
 
                 if (articulo.Id != 0)
                 {
-                   // negocio.modificar(pokemon);
+                    negocio.Modificar(articulo);
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
