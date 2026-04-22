@@ -43,7 +43,7 @@ namespace ProyectoArticulos
         private void button1_Click(object sender, EventArgs e)
         {
             frmAltaArticulo altaArticulo = new frmAltaArticulo();
-            altaArticulo.ShowDialog(this); 
+            altaArticulo.ShowDialog(this);
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -56,13 +56,13 @@ namespace ProyectoArticulos
 
         }
 
-       
+
         private void frmOpciones_Load(object sender, EventArgs e)
         {
-            cargar();  
+            cargar();
         }
 
-        
+
         private void cargarImagen(string imagen)
         {
             try
@@ -86,10 +86,7 @@ namespace ProyectoArticulos
 
         }
 
-        private void pctImagen_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -98,7 +95,34 @@ namespace ProyectoArticulos
 
             frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
             modificar.ShowDialog(this);
-            cargar(); 
+            cargar();
+        }
+
+        private void btnEliminarFisico_Click(object sender, EventArgs e)
+        {
+            eliminar(true); 
+
+        }
+        private void eliminar(bool logico = false)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo articulo = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("¿Estas seguro/a de querer eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    negocio.Eliminar(articulo.Id);
+                    cargar(); 
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString()); 
+            }
         }
     }
+
+
+
 }

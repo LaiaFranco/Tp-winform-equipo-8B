@@ -192,11 +192,8 @@ namespace negocio
 
 
         public void Eliminar(int id)
-        {
-
+        { 
             AccesoDatos datos = new AccesoDatos();
-
-
             try {
 
                 datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @id");
@@ -214,7 +211,9 @@ namespace negocio
 
                 datos.cerrarConexion();
             }
-        } 
+        }
+        
+        
 
     }
 }
