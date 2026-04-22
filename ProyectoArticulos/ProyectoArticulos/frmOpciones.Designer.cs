@@ -40,6 +40,13 @@
             this.articulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.marcaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblCampo = new System.Windows.Forms.Label();
+            this.cboCampo = new System.Windows.Forms.ComboBox();
+            this.lblCriterio = new System.Windows.Forms.Label();
+            this.cblCriterio = new System.Windows.Forms.ComboBox();
+            this.lblFiltro = new System.Windows.Forms.Label();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctImagen)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -105,7 +112,7 @@
             this.pctImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pctImagen.Location = new System.Drawing.Point(867, 75);
             this.pctImagen.Name = "pctImagen";
-            this.pctImagen.Size = new System.Drawing.Size(334, 364);
+            this.pctImagen.Size = new System.Drawing.Size(334, 363);
             this.pctImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctImagen.TabIndex = 6;
             this.pctImagen.TabStop = false;
@@ -164,13 +171,81 @@
             this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(104, 29);
             this.categoriaToolStripMenuItem.Text = "Categoria";
             // 
+            // lblCampo
+            // 
+            this.lblCampo.AutoSize = true;
+            this.lblCampo.Location = new System.Drawing.Point(8, 539);
+            this.lblCampo.Name = "lblCampo";
+            this.lblCampo.Size = new System.Drawing.Size(64, 20);
+            this.lblCampo.TabIndex = 10;
+            this.lblCampo.Text = "Campo:";
+            // 
+            // cboCampo
+            // 
+            this.cboCampo.FormattingEnabled = true;
+            this.cboCampo.Location = new System.Drawing.Point(78, 539);
+            this.cboCampo.Name = "cboCampo";
+            this.cboCampo.Size = new System.Drawing.Size(194, 28);
+            this.cboCampo.TabIndex = 11;
+            // 
+            // lblCriterio
+            // 
+            this.lblCriterio.AutoSize = true;
+            this.lblCriterio.Location = new System.Drawing.Point(299, 542);
+            this.lblCriterio.Name = "lblCriterio";
+            this.lblCriterio.Size = new System.Drawing.Size(67, 20);
+            this.lblCriterio.TabIndex = 12;
+            this.lblCriterio.Text = "Criterio: ";
+            // 
+            // cblCriterio
+            // 
+            this.cblCriterio.FormattingEnabled = true;
+            this.cblCriterio.Location = new System.Drawing.Point(372, 539);
+            this.cblCriterio.Name = "cblCriterio";
+            this.cblCriterio.Size = new System.Drawing.Size(171, 28);
+            this.cblCriterio.TabIndex = 13;
+            // 
+            // lblFiltro
+            // 
+            this.lblFiltro.AutoSize = true;
+            this.lblFiltro.Location = new System.Drawing.Point(567, 542);
+            this.lblFiltro.Name = "lblFiltro";
+            this.lblFiltro.Size = new System.Drawing.Size(48, 20);
+            this.lblFiltro.TabIndex = 14;
+            this.lblFiltro.Text = "Filtro:";
+            // 
+            // txtFiltro
+            // 
+            this.txtFiltro.Location = new System.Drawing.Point(621, 541);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(190, 26);
+            this.txtFiltro.TabIndex = 15;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnBuscar.Location = new System.Drawing.Point(841, 533);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(142, 39);
+            this.btnBuscar.TabIndex = 16;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // frmOpciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1375, 585);
+            this.ClientSize = new System.Drawing.Size(1375, 584);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.txtFiltro);
+            this.Controls.Add(this.lblFiltro);
+            this.Controls.Add(this.cblCriterio);
+            this.Controls.Add(this.lblCriterio);
+            this.Controls.Add(this.cboCampo);
+            this.Controls.Add(this.lblCampo);
             this.Controls.Add(this.btnEliminarFisico);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.pctImagen);
@@ -204,5 +279,12 @@
         private System.Windows.Forms.ToolStripMenuItem articulosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem marcaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
+        private System.Windows.Forms.Label lblCampo;
+        private System.Windows.Forms.ComboBox cboCampo;
+        private System.Windows.Forms.Label lblCriterio;
+        private System.Windows.Forms.ComboBox cblCriterio;
+        private System.Windows.Forms.Label lblFiltro;
+        private System.Windows.Forms.TextBox txtFiltro;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }

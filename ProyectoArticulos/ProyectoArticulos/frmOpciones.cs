@@ -115,6 +115,67 @@ namespace ProyectoArticulos
                 MessageBox.Show(ex.ToString()); 
             }
         }
+
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
+        }
+        private bool validarFiltro()
+        {
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione el campo para filtrar.");
+                return true;
+            }
+            if (cblCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione el criterio para filtrar.");
+                return true;
+            }
+            if (cboCampo.SelectedItem.ToString() == "Número")
+            {
+                if (string.IsNullOrEmpty(txtFiltro.Text))
+                {
+                    MessageBox.Show("Debes cargar el filtro para numéricos...");
+                    return true;
+                }
+                if (!(soloNumeros(txtFiltro.Text)))
+                {
+                    MessageBox.Show("Solo nros para filtrar por un campo numérico...");
+                    return true;
+                }
+
+            }
+
+            return false;
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                if (validarFiltro())
+                    return;
+
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cblCriterio.SelectedItem.ToString();
+                string filtro = txtFiltro.Text;
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+
+        }
     }
 
 

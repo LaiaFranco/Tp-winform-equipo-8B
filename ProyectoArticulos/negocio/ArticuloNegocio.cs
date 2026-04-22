@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
+using System.Linq.Expressions;
 
 namespace negocio
 {
@@ -35,40 +36,8 @@ namespace negocio
                 {
                     while (datos.Lector.Read())
                     {
-
-                        Articulo nuevoArticulo = new Articulo();
-
-
-                        nuevoArticulo.Id = (int)(datos.Lector["ArticuloId"]);
-                        nuevoArticulo.CodigoDeArtculo = datos.Lector["Codigo"].ToString();
-                        nuevoArticulo.Nombre = datos.Lector["Nombre"].ToString();
-                        nuevoArticulo.Descripcion = datos.Lector["ArticuloDescripcion"].ToString();
-                        nuevoArticulo.Precio = (decimal)(datos.Lector["Precio"]);
-
-                        // Marca
-                        if (datos.Lector["IdMarca"] != DBNull.Value)
-                        {
-                            nuevoArticulo.Marca = new Marca();
-                            nuevoArticulo.Marca.Id = (int)(datos.Lector["IdMarca"]);
-                            nuevoArticulo.Marca.Descripcion = datos.Lector["MarcaDescripcion"].ToString();
-                        }
-
-                        // Categoria
-                        if (datos.Lector["IdCategoria"] != DBNull.Value)
-                        {
-                            nuevoArticulo.Categoria = new Categoria();
-                            nuevoArticulo.Categoria.Id = (int)(datos.Lector["IdCategoria"]);
-                            nuevoArticulo.Categoria.Descripcion = datos.Lector["CategoriaDescripcion"].ToString();
-                        }
-
-                        // Imagen
-                        if (datos.Lector["ImagenId"] != DBNull.Value)
-                        {
-                            nuevoArticulo.Imagen = new Imagen();
-                            nuevoArticulo.Imagen.Id = (int)(datos.Lector["ImagenId"]);
-                            nuevoArticulo.Imagen.UrlImagen = datos.Lector["ImagenUrl"].ToString();
-                        }
-
+                        Articulo nuevoArticulo = CargarArticulo(datos.Lector); 
+                       
                         ListaArticulo.Add(nuevoArticulo);
                     }
                 }
@@ -85,6 +54,43 @@ namespace negocio
 
                 datos.cerrarConexion();
             }
+        }
+        public Articulo CargarArticulo(SqlDataReader Lector)
+        {
+            Articulo nuevoArticulo = new Articulo();
+
+            nuevoArticulo.Id = (int)(Lector["ArticuloId"]);
+            nuevoArticulo.CodigoDeArtculo = Lector["Codigo"].ToString();
+            nuevoArticulo.Nombre = Lector["Nombre"].ToString();
+            nuevoArticulo.Descripcion = Lector["ArticuloDescripcion"].ToString();
+            nuevoArticulo.Precio = (decimal)(Lector["Precio"]);
+
+            // Marca
+            if (Lector["IdMarca"] != DBNull.Value)
+            {
+                nuevoArticulo.Marca = new Marca();
+                nuevoArticulo.Marca.Id = (int)(Lector["IdMarca"]);
+                nuevoArticulo.Marca.Descripcion = Lector["MarcaDescripcion"].ToString();
+            }
+
+            // Categoria
+            if (Lector["IdCategoria"] != DBNull.Value)
+            {
+                nuevoArticulo.Categoria = new Categoria();
+                nuevoArticulo.Categoria.Id = (int)(Lector["IdCategoria"]);
+                nuevoArticulo.Categoria.Descripcion = Lector["CategoriaDescripcion"].ToString();
+            }
+
+            // Imagen
+            if (Lector["ImagenId"] != DBNull.Value)
+            {
+                nuevoArticulo.Imagen = new Imagen();
+                nuevoArticulo.Imagen.Id = (int)(Lector["ImagenId"]);
+                nuevoArticulo.Imagen.UrlImagen = Lector["ImagenUrl"].ToString();
+            }
+
+            return nuevoArticulo; 
+
         }
 
         public void Agregar(Articulo nuevo)
@@ -212,8 +218,100 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        
-        
 
-    }
+        public List<Articulo> filtrar(string campo, string criterio, string filtro)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT A.Codigo, A.Nombre,  A.Descripcion,  M.Descripcion AS Marca, C.Descripcion AS Categoria, I.ImagenUrl,  A.Id" +
+                    "FROM ARTICULOS A INNER " +
+                    "JOIN MARCAS M ON M.Id = A.IdMarca " +
+                    "INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria" +
+                    "LEFT JOIN IMAGENES I ON I.IdArticulo = A.Id";
+
+                if (campo == "Codigo")
+                {
+                    consulta = Campo("Codigo",consulta, criterio,filtro);
+
+                }
+                else if (campo == "Nombre")
+                {
+                    consulta = Campo("Nombre", consulta, criterio,filtro);
+                }
+                else if (campo == "Descripcion")
+                {
+
+                    consulta = Campo("Descripcion",consulta ,criterio,filtro);
+                }
+                else if (campo == "Marca")
+                {
+                    consulta = Campo("Marca",consulta ,criterio,filtro);
+                }
+                else if (campo == "Categoria")
+                {
+                    consulta = Campo("Categoria",consulta ,criterio,filtro);
+                }
+                else 
+                 {
+                    switch (criterio)
+                    {
+                        case "Mayor a":
+                            consulta += "Precio > " + filtro;
+                            break;
+                        case "Menor a":
+                            consulta += "Precio < " + filtro;
+                            break;
+                        default:
+                            consulta += "Precio = " + filtro;
+                            break;
+                    }
+                 }
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                    Articulo nuevoArticulo = negocio.CargarArticulo(datos.Lector);
+
+                    lista.Add(nuevoArticulo);
+
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private string Campo(string campo,string consulta,string criterio,string filtro)
+        {
+
+            switch (criterio)
+            {
+                case "Comienza con":
+                    consulta += campo + " LIKE '" + filtro + "%'";
+                    break;
+
+                case "Termina con":
+                    consulta += campo + " LIKE '%" + filtro + "'";
+                    break;
+
+                case "Igual a":
+                    consulta += campo + " = '" + filtro + "'";
+                    break;
+
+                default:
+                    consulta += campo + " LIKE '%" + filtro + "%'";
+                    break;
+            }
+
+            return consulta;
+        }
+
+
+    }   
 }
