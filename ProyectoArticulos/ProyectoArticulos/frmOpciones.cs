@@ -60,6 +60,13 @@ namespace ProyectoArticulos
         private void frmOpciones_Load(object sender, EventArgs e)
         {
             cargar();
+            cboCampo.Items.Add("Cod.Articulo");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripcion");
+            cboCampo.Items.Add("Marca");
+            cboCampo.Items.Add("Categoria");
+            cboCampo.Items.Add("Precio");
+
         }
 
 
@@ -69,7 +76,7 @@ namespace ProyectoArticulos
             {
                 pctImagen.Load(imagen);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 pctImagen.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
             }
@@ -116,44 +123,114 @@ namespace ProyectoArticulos
             }
         }
 
-        private void marcaToolStripMenuItem_Click(object sender, EventArgs e)
+        private bool soloNumeros(string cadena)
         {
-          
-            
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
+        }
+        private bool validarFiltro()
+        {
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione el campo para filtrar.");
+                return true;
+            }
+            if (cblCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione el criterio para filtrar.");
+                return true;
+            }
+            if (cboCampo.SelectedItem.ToString() == "Precio")
+            {
+                if (string.IsNullOrEmpty(txtFiltro.Text))
+                {
+                    MessageBox.Show("Debes cargar el filtro para numéricos...");
+                    return true;
+                }
+                if (!(soloNumeros(txtFiltro.Text)))
+                {
+                    MessageBox.Show("Solo nros para filtrar por un campo numérico...");
+                    return true;
+                }
+
+            }
+
+            return false;
         }
 
-        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-           
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                if (validarFiltro())
+                    return;
+
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cblCriterio.SelectedItem.ToString();
+                string filtro = txtFiltro.Text;
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+
         }
 
-        private void listarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmCategoria ViewCate = new frmCategoria();
-            ViewCate.TopMost = true;
-            ViewCate.Show();
-          
-        }
-
-        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void cblCriterio_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboCampo.SelectedItem == null)
+                return;
+
+            string opcion = cboCampo.SelectedItem.ToString(); 
+
+            cblCriterio.Items.Clear();
+            if(opcion == "Precio")
+            {
+                cblCriterio.Items.Add("Mayor a");
+                cblCriterio.Items.Add("Menor a");
+                cblCriterio.Items.Add("Igual a"); 
+            }else
+            {
+              
+                cblCriterio.Items.Add("Comienza con");
+                cblCriterio.Items.Add("Termina con");
+                cblCriterio.Items.Add("Igual a");
+                cblCriterio.Items.Add("Contiene");
+            }
+
 
         }
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCrearCategoria ViewCrear  = new frmCrearCategoria();
+            frmAltaMarca altaMarca = new frmAltaMarca();
+            altaMarca.ShowDialog(this); 
+        }
 
-            ViewCrear.TopMost = true;
-            ViewCrear.Show();
+        private void listarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmCategoria ListarCategoria = new frmCategoria();
+            ListarCategoria.ShowDialog(this);
+        }
+
+        private void crearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCrearCategoria   CrearCategoria = new frmCrearCategoria();
+            CrearCategoria.ShowDialog(this);
         }
     }
-
-
 
 }
