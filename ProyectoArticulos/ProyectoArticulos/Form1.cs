@@ -29,13 +29,13 @@ namespace ProyectoArticulos
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-
+            frmOpciones opciones = new frmOpciones();
+            opciones.ShowDialog();
         }
 
         private void btnIngresar_Click_1(object sender, EventArgs e)
         {
-            frmOpciones opciones = new frmOpciones();
-            opciones.ShowDialog(); 
+
         }
     }
 }

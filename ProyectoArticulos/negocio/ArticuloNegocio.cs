@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using dominio;
 using System.Linq.Expressions;
 
+
 namespace negocio
 {
     public class ArticuloNegocio
@@ -36,8 +37,38 @@ namespace negocio
                 {
                     while (datos.Lector.Read())
                     {
-                        Articulo nuevoArticulo = CargarArticulo(datos.Lector); 
-                       
+                        Articulo nuevoArticulo = new Articulo();
+
+                        nuevoArticulo.Id = (int)(datos.Lector["ArticuloId"]);
+                        nuevoArticulo.CodigoDeArtculo = datos.Lector["Codigo"].ToString();
+                        nuevoArticulo.Nombre = datos.Lector["Nombre"].ToString();
+                        nuevoArticulo.Descripcion = datos.Lector["ArticuloDescripcion"].ToString();
+                        nuevoArticulo.Precio = (decimal)(datos.Lector["Precio"]);
+
+                        // Marca
+                        if (datos.Lector["IdMarca"] != DBNull.Value)
+                        {
+                            nuevoArticulo.Marca = new Marca();
+                            nuevoArticulo.Marca.Id = (int)(datos.Lector["IdMarca"]);
+                            nuevoArticulo.Marca.Descripcion = datos.Lector["MarcaDescripcion"].ToString();
+                        }
+
+                        // Categoria
+                        if (datos.Lector["IdCategoria"] != DBNull.Value)
+                        {
+                            nuevoArticulo.Categoria = new Categoria();
+                            nuevoArticulo.Categoria.Id = (int)(datos.Lector["IdCategoria"]);
+                            nuevoArticulo.Categoria.Descripcion = datos.Lector["CategoriaDescripcion"].ToString();
+                        }
+
+                        // Imagen
+                        if (datos.Lector["ImagenId"] != DBNull.Value)
+                        {
+                            nuevoArticulo.Imagen = new Imagen();
+                            nuevoArticulo.Imagen.Id = (int)(datos.Lector["ImagenId"]);
+                            nuevoArticulo.Imagen.UrlImagen = datos.Lector["ImagenUrl"].ToString();
+                        }
+
                         ListaArticulo.Add(nuevoArticulo);
                     }
                 }
@@ -55,43 +86,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public Articulo CargarArticulo(SqlDataReader Lector)
-        {
-            Articulo nuevoArticulo = new Articulo();
-
-            nuevoArticulo.Id = (int)(Lector["ArticuloId"]);
-            nuevoArticulo.CodigoDeArtculo = Lector["Codigo"].ToString();
-            nuevoArticulo.Nombre = Lector["Nombre"].ToString();
-            nuevoArticulo.Descripcion = Lector["ArticuloDescripcion"].ToString();
-            nuevoArticulo.Precio = (decimal)(Lector["Precio"]);
-
-            // Marca
-            if (Lector["IdMarca"] != DBNull.Value)
-            {
-                nuevoArticulo.Marca = new Marca();
-                nuevoArticulo.Marca.Id = (int)(Lector["IdMarca"]);
-                nuevoArticulo.Marca.Descripcion = Lector["MarcaDescripcion"].ToString();
-            }
-
-            // Categoria
-            if (Lector["IdCategoria"] != DBNull.Value)
-            {
-                nuevoArticulo.Categoria = new Categoria();
-                nuevoArticulo.Categoria.Id = (int)(Lector["IdCategoria"]);
-                nuevoArticulo.Categoria.Descripcion = Lector["CategoriaDescripcion"].ToString();
-            }
-
-            // Imagen
-            if (Lector["ImagenId"] != DBNull.Value)
-            {
-                nuevoArticulo.Imagen = new Imagen();
-                nuevoArticulo.Imagen.Id = (int)(Lector["ImagenId"]);
-                nuevoArticulo.Imagen.UrlImagen = Lector["ImagenUrl"].ToString();
-            }
-
-            return nuevoArticulo; 
-
-        }
+       
 
         public void Agregar(Articulo nuevo)
         {
@@ -225,59 +220,143 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "SELECT A.Codigo, A.Nombre,  A.Descripcion,  M.Descripcion AS Marca, C.Descripcion AS Categoria, I.ImagenUrl,  A.Id" +
-                    "FROM ARTICULOS A INNER " +
-                    "JOIN MARCAS M ON M.Id = A.IdMarca " +
-                    "INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria" +
-                    "LEFT JOIN IMAGENES I ON I.IdArticulo = A.Id";
+                string consulta =  @"SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, 
+                                       A.Precio, A.IdMarca, M.Descripcion AS Marca, 
+                                       A.IdCategoria, C.Descripcion AS Categoria, 
+                                       I.Id AS ImagenId, I.ImagenUrl
+                                       FROM ARTICULOS A
+                                       LEFT JOIN MARCAS M ON A.IdMarca = M.Id 
+                                       LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id 
+                                       LEFT JOIN IMAGENES I ON I.IdArticulo = A.Id"; 
 
-                if (campo == "Codigo")
+                if (campo == "Cod.Articulo")
                 {
-                    consulta = Campo("Codigo",consulta, criterio,filtro);
-
-                }
+                    switch (criterio)
+                    { 
+                        case "Comienza con":
+                            consulta += " where A.Codigo like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += " where A.Codigo like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += " where A.Codigo like '%" + filtro + "%'";
+                            break;
+                    }
+                 }
                 else if (campo == "Nombre")
                 {
-                    consulta = Campo("Nombre", consulta, criterio,filtro);
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " where A.Nombre like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += " where A.Nombre like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += " where A.Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                
                 }
                 else if (campo == "Descripcion")
                 {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " where A.Descripcion like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += " where A.Descripcion like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += " where A.Descripcion like '%" + filtro + "%'";
+                            break;
+                    }
 
-                    consulta = Campo("Descripcion",consulta ,criterio,filtro);
                 }
                 else if (campo == "Marca")
                 {
-                    consulta = Campo("Marca",consulta ,criterio,filtro);
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " where M.Descripcion like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += " where M.Descripcion like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += " where M.Descripcion like '%" + filtro + "%'";
+                            break;
+                    }
+                    
                 }
                 else if (campo == "Categoria")
                 {
-                    consulta = Campo("Categoria",consulta ,criterio,filtro);
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " where C.Descripcion like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += " where C.Descripcion like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += " where C.Descripcion like '%" + filtro + "%'";
+                            break;
+                    }
+                    
                 }
                 else 
                  {
                     switch (criterio)
                     {
                         case "Mayor a":
-                            consulta += "Precio > " + filtro;
+                            consulta += " where A.Precio > " + filtro;
                             break;
                         case "Menor a":
-                            consulta += "Precio < " + filtro;
+                            consulta += " where A.Precio < " + filtro;
                             break;
                         default:
-                            consulta += "Precio = " + filtro;
+                            consulta += " where A.Precio = " + filtro;
                             break;
                     }
                  }
+
+                
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    ArticuloNegocio negocio = new ArticuloNegocio();
-                    Articulo nuevoArticulo = negocio.CargarArticulo(datos.Lector);
+                    Articulo nuevoArticulo = new Articulo();
+
+                    nuevoArticulo.Id = (int)(datos.Lector["Id"]);
+                    nuevoArticulo.CodigoDeArtculo = datos.Lector["Codigo"].ToString();
+                    nuevoArticulo.Nombre = datos.Lector["Nombre"].ToString();
+                    nuevoArticulo.Descripcion = datos.Lector["Descripcion"].ToString();
+                    nuevoArticulo.Precio = (decimal)(datos.Lector["Precio"]);
+
+                    // Marca
+                  
+                     nuevoArticulo.Marca = new Marca();
+                     nuevoArticulo.Marca.Descripcion = datos.Lector["Marca"].ToString();
+
+
+                    // Categoria
+
+                     nuevoArticulo.Categoria = new Categoria();
+                     nuevoArticulo.Categoria.Descripcion = datos.Lector["Categoria"].ToString();
+
+
+                    // Imagen
+
+                     nuevoArticulo.Imagen = new Imagen();
+                     nuevoArticulo.Imagen.UrlImagen = datos.Lector["ImagenUrl"].ToString();
+                    
 
                     lista.Add(nuevoArticulo);
-
                 }
                 return lista;
 
@@ -287,31 +366,6 @@ namespace negocio
                 throw ex;
             }
         }
-        private string Campo(string campo,string consulta,string criterio,string filtro)
-        {
-
-            switch (criterio)
-            {
-                case "Comienza con":
-                    consulta += campo + " LIKE '" + filtro + "%'";
-                    break;
-
-                case "Termina con":
-                    consulta += campo + " LIKE '%" + filtro + "'";
-                    break;
-
-                case "Igual a":
-                    consulta += campo + " = '" + filtro + "'";
-                    break;
-
-                default:
-                    consulta += campo + " LIKE '%" + filtro + "%'";
-                    break;
-            }
-
-            return consulta;
-        }
-
-
+        
     }   
 }
