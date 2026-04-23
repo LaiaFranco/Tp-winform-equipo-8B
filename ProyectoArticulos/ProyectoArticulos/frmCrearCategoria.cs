@@ -15,21 +15,36 @@ namespace ProyectoArticulos
     public partial class frmCrearCategoria : Form
     {
 
+        private Categoria categoria = null;
+
 
         public frmCrearCategoria()
         {
             InitializeComponent();
         }
 
+        public frmCrearCategoria(Categoria cat)
+        {
+            InitializeComponent();
+            categoria = cat;
+            Text = "Modificar Categoria";
+        }
+
         private void textDescripcion_TextChanged(object sender, EventArgs e)
         {
 
             EnableButton();
+           
         }
 
         private void frmCrearCategoria_Load(object sender, EventArgs e)
         {
             EnableButton();
+
+            if (categoria != null)
+            {
+                textDescripcion.Text = categoria.Descripcion;
+            }
         }
 
 
@@ -55,11 +70,30 @@ namespace ProyectoArticulos
 
             Cat.Descripcion = textDescripcion.Text;
 
-            CatNego.Agregar(Cat);
+            if (categoria == null)
+            {
+                CatNego.Agregar(Cat);
 
-            textDescripcion.Text = "";
+                textDescripcion.Text = "";
 
-            MessageBox.Show("Categoria creada exitosamente");
+                MessageBox.Show("Categoria creada exitosamente");
+            }
+            
+              
+
+            if (categoria != null)
+            {
+
+                CatNego.Actualizar(Cat);
+
+                textDescripcion.Text = "";
+
+                MessageBox.Show("Categoria actulizada exitosamente");
+            }
+ 
+      
+            Close();
+            
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

@@ -158,6 +158,7 @@ namespace ProyectoArticulos
 
                     MessageBox.Show("Agregado exitosamente");
                 }
+
                 Close(); 
 
             }

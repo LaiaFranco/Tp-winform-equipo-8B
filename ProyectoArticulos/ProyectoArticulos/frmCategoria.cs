@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace ProyectoArticulos
 {
     public partial class frmCategoria : Form
     {
-
+  
         private CategoriaNegocio CatNegocio = new CategoriaNegocio();
         public frmCategoria()
         {
@@ -24,6 +25,21 @@ namespace ProyectoArticulos
         {
             gridCategoria.DataSource = CatNegocio.listar();
             gridCategoria.Columns["Id"].Visible = false;
+        }
+
+        private void btnModificarCat_Click(object sender, EventArgs e)
+        {
+            Categoria seleccionado;
+            seleccionado = (Categoria)gridCategoria.CurrentRow.DataBoundItem;
+
+            frmCrearCategoria modificar = new frmCrearCategoria(seleccionado);
+            modificar.ShowDialog(this);
+        }
+
+        private void btnCrearCat_Click(object sender, EventArgs e)
+        {
+            frmCrearCategoria modificar = new frmCrearCategoria();
+            modificar.ShowDialog(this);
         }
     }
 }

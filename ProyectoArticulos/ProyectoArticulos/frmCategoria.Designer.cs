@@ -30,6 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.gridCategoria = new System.Windows.Forms.DataGridView();
+            this.btnModificarCat = new System.Windows.Forms.Button();
+            this.btnEliminarCat = new System.Windows.Forms.Button();
+            this.btnCrearCat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridCategoria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,16 +49,48 @@
             // gridCategoria
             // 
             this.gridCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridCategoria.Location = new System.Drawing.Point(18, 107);
+            this.gridCategoria.Location = new System.Drawing.Point(18, 128);
             this.gridCategoria.Name = "gridCategoria";
             this.gridCategoria.Size = new System.Drawing.Size(145, 150);
             this.gridCategoria.TabIndex = 1;
+            // 
+            // btnModificarCat
+            // 
+            this.btnModificarCat.Location = new System.Drawing.Point(108, 332);
+            this.btnModificarCat.Name = "btnModificarCat";
+            this.btnModificarCat.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarCat.TabIndex = 2;
+            this.btnModificarCat.Text = "Modificar";
+            this.btnModificarCat.UseVisualStyleBackColor = true;
+            this.btnModificarCat.Click += new System.EventHandler(this.btnModificarCat_Click);
+            // 
+            // btnEliminarCat
+            // 
+            this.btnEliminarCat.Location = new System.Drawing.Point(199, 332);
+            this.btnEliminarCat.Name = "btnEliminarCat";
+            this.btnEliminarCat.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarCat.TabIndex = 3;
+            this.btnEliminarCat.Text = "Eliminar";
+            this.btnEliminarCat.UseVisualStyleBackColor = true;
+            // 
+            // btnCrearCat
+            // 
+            this.btnCrearCat.Location = new System.Drawing.Point(18, 332);
+            this.btnCrearCat.Name = "btnCrearCat";
+            this.btnCrearCat.Size = new System.Drawing.Size(75, 23);
+            this.btnCrearCat.TabIndex = 4;
+            this.btnCrearCat.Text = "Crear";
+            this.btnCrearCat.UseVisualStyleBackColor = true;
+            this.btnCrearCat.Click += new System.EventHandler(this.btnCrearCat_Click);
             // 
             // frmCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCrearCat);
+            this.Controls.Add(this.btnEliminarCat);
+            this.Controls.Add(this.btnModificarCat);
             this.Controls.Add(this.gridCategoria);
             this.Controls.Add(this.label1);
             this.Name = "frmCategoria";
@@ -71,5 +106,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView gridCategoria;
+        private System.Windows.Forms.Button btnModificarCat;
+        private System.Windows.Forms.Button btnEliminarCat;
+        private System.Windows.Forms.Button btnCrearCat;
     }
 }

@@ -231,6 +231,8 @@ namespace ProyectoArticulos
             frmCrearCategoria   CrearCategoria = new frmCrearCategoria();
             CrearCategoria.ShowDialog(this);
         }
+
+       
     }
 
 }
