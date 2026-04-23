@@ -64,11 +64,11 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(143, 56);
+            this.lblTitulo.Location = new System.Drawing.Point(211, 55);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(239, 26);
+            this.lblTitulo.Size = new System.Drawing.Size(128, 26);
             this.lblTitulo.TabIndex = 1;
-            this.lblTitulo.Text = "AGREGAR ARTICULO";
+            this.lblTitulo.Text = " ARTICULO";
             // 
             // lblCodigo
             // 

@@ -213,6 +213,12 @@ namespace ProyectoArticulos
 
 
         }
+
+        private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAltaMarca altaMarca = new frmAltaMarca();
+            altaMarca.ShowDialog(this); 
+        }
     }
 
 }

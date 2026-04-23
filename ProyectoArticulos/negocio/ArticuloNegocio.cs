@@ -93,7 +93,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-
+                
                 datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) " +
                      "VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)");
 
