@@ -235,6 +235,12 @@ namespace ProyectoArticulos
             opcionesMarca.ShowDialog(this); 
 
         }
+
+        private void categoriaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmCategoria categoria = new frmCategoria();
+            categoria.ShowDialog(this);
+        }
     }
 
 }

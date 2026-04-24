@@ -65,13 +65,16 @@ namespace ProyectoArticulos
 
         private void btnAgregarCategoria_Click(object sender, EventArgs e)
         {
-            Categoria Cat = new Categoria();
+           
             CategoriaNegocio CatNego = new CategoriaNegocio();
 
-            Cat.Descripcion = textDescripcion.Text;
+           
 
             if (categoria == null)
             {
+                Categoria Cat = new Categoria();
+                Cat.Descripcion = textDescripcion.Text;
+
                 CatNego.Agregar(Cat);
 
                 textDescripcion.Text = "";
@@ -84,9 +87,10 @@ namespace ProyectoArticulos
             if (categoria != null)
             {
 
-                CatNego.Actualizar(Cat);
+                categoria.Descripcion = textDescripcion.Text;
 
-                textDescripcion.Text = "";
+                CatNego.Actualizar(categoria);
+
 
                 MessageBox.Show("Categoria actulizada exitosamente");
             }
@@ -100,5 +104,7 @@ namespace ProyectoArticulos
         {
             Close();
         }
+
+       
     }
 }

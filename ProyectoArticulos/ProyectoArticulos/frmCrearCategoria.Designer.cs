@@ -28,26 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.textDescripcion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAgregarCategoria = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 31);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Crear";
-            // 
             // textDescripcion
             // 
-            this.textDescripcion.Location = new System.Drawing.Point(18, 144);
+            this.textDescripcion.Location = new System.Drawing.Point(15, 94);
             this.textDescripcion.Name = "textDescripcion";
             this.textDescripcion.Size = new System.Drawing.Size(227, 20);
             this.textDescripcion.TabIndex = 1;
@@ -56,7 +45,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 118);
+            this.label2.Location = new System.Drawing.Point(12, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 2;
@@ -64,17 +53,17 @@
             // 
             // btnAgregarCategoria
             // 
-            this.btnAgregarCategoria.Location = new System.Drawing.Point(19, 196);
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(12, 168);
             this.btnAgregarCategoria.Name = "btnAgregarCategoria";
             this.btnAgregarCategoria.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarCategoria.TabIndex = 3;
-            this.btnAgregarCategoria.Text = "Crear";
+            this.btnAgregarCategoria.Text = "Guardar";
             this.btnAgregarCategoria.UseVisualStyleBackColor = true;
             this.btnAgregarCategoria.Click += new System.EventHandler(this.btnAgregarCategoria_Click);
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(161, 196);
+            this.btnCerrar.Location = new System.Drawing.Point(167, 168);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(75, 23);
             this.btnCerrar.TabIndex = 4;
@@ -86,12 +75,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 329);
+            this.ClientSize = new System.Drawing.Size(283, 248);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnAgregarCategoria);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textDescripcion);
-            this.Controls.Add(this.label1);
             this.Name = "frmCrearCategoria";
             this.Text = "frmCrearCategoria";
             this.Load += new System.EventHandler(this.frmCrearCategoria_Load);
@@ -101,8 +89,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textDescripcion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAgregarCategoria;
