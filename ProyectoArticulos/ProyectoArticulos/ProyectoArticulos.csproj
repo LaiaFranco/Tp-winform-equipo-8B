@@ -79,6 +79,12 @@
     <Compile Include="frmOpciones.Designer.cs">
       <DependentUpon>frmOpciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpcionesMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpcionesMarca.Designer.cs">
+      <DependentUpon>OpcionesMarca.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOpciones.resx">
       <DependentUpon>frmOpciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpcionesMarca.resx">
+      <DependentUpon>OpcionesMarca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

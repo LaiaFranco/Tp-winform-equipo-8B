@@ -1,6 +1,7 @@
 ﻿using dominio;  
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,11 +61,11 @@ namespace negocio
 
         public void Agregar(Marca nuevo)
         {
-           
-
+          
             AccesoDatos datos = new AccesoDatos();
             try
             {
+
                 if (!existe(nuevo))
                 {
                     datos.setearConsulta("INSERT INTO MARCAS (Descripcion) VALUES (@descripcion)");
@@ -82,6 +83,32 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public void Modificar(Marca nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE MARCAS SET " +
+                    "Descripcion = @nombre" +
+                    "WHERE Id = @id"
+                    );
+                datos.setearParametro("@nombre",nuevo.Descripcion);
+
+                datos.ejecutarAccion(); 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion(); 
+            }
+
+
         }
 
         public void Eliminar(int id)

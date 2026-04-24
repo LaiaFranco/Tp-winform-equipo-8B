@@ -38,16 +38,34 @@ namespace ProyectoArticulos
                 if (marca == null)
                    marca = new Marca();
 
-                marca.Descripcion = txtMarca.Text.ToUpper();
-                negocio.Agregar(marca);
+                if (txtMarca.Text == "")
+                {
+                    MessageBox.Show("EL CAMPO ESTA VACIO BURRO ");
+                }
+                else if (marca.Id != 0)
+                {
+                    negocio.Modificar(marca);
+                    MessageBox.Show("Modificado exitosamente!!");
+                    Close();
 
-                MessageBox.Show("Agregado exitosamente");
+                }
+                else
+                {
+                    marca.Descripcion = txtMarca.Text.ToUpper();
+                    negocio.Agregar(marca);
+                    MessageBox.Show("Agregado exitosamente!!");
+                }
+                
             }
             catch (Exception ex)
             {
-
-                throw ex;
+               MessageBox.Show(ex.ToString());
             }
+            finally
+            {
+                Close(); 
+            }
+           
         }
     }
 }

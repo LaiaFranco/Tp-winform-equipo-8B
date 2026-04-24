@@ -224,6 +224,17 @@ namespace ProyectoArticulos
         {
 
         }
+
+        private void listarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void marcaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmOpcionesMarca opcionesMarca = new frmOpcionesMarca();
+            opcionesMarca.ShowDialog(this); 
+
+        }
     }
 
 }
