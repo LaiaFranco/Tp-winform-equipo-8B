@@ -72,7 +72,7 @@ namespace negocio
 
                     datos.ejecutarAccion();
                 }
-               
+              
             }
             catch (Exception ex)
             {
