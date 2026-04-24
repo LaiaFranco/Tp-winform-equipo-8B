@@ -21,10 +21,15 @@ namespace ProyectoArticulos
             InitializeComponent();
         }
 
-        private void frmCategoria_Load(object sender, EventArgs e)
+        private void cargar()
         {
             gridCategoria.DataSource = CatNegocio.listar();
             gridCategoria.Columns["Id"].Visible = false;
+        }
+
+        private void frmCategoria_Load(object sender, EventArgs e)
+        {
+            cargar();
         }
 
         private void btnModificarCat_Click(object sender, EventArgs e)
@@ -34,17 +39,34 @@ namespace ProyectoArticulos
 
             frmCrearCategoria modificar = new frmCrearCategoria(seleccionado);
             modificar.ShowDialog(this);
+
         }
 
         private void btnCrearCat_Click(object sender, EventArgs e)
         {
             frmCrearCategoria modificar = new frmCrearCategoria();
             modificar.ShowDialog(this);
+           
         }
 
         private void btnEliminarCat_Click(object sender, EventArgs e)
         {
+            Categoria seleccionado;
+            seleccionado = (Categoria)gridCategoria.CurrentRow.DataBoundItem;
 
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("¿Estas seguro/a de querer eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    CatNegocio.Eliminar(seleccionado.Id);
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

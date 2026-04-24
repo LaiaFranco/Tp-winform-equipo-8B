@@ -49,7 +49,7 @@
             // 
             this.textDescripcion.Location = new System.Drawing.Point(18, 144);
             this.textDescripcion.Name = "textDescripcion";
-            this.textDescripcion.Size = new System.Drawing.Size(265, 20);
+            this.textDescripcion.Size = new System.Drawing.Size(227, 20);
             this.textDescripcion.TabIndex = 1;
             this.textDescripcion.TextChanged += new System.EventHandler(this.textDescripcion_TextChanged);
             // 
@@ -64,7 +64,7 @@
             // 
             // btnAgregarCategoria
             // 
-            this.btnAgregarCategoria.Location = new System.Drawing.Point(37, 271);
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(19, 196);
             this.btnAgregarCategoria.Name = "btnAgregarCategoria";
             this.btnAgregarCategoria.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarCategoria.TabIndex = 3;
@@ -74,7 +74,7 @@
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(170, 271);
+            this.btnCerrar.Location = new System.Drawing.Point(161, 196);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(75, 23);
             this.btnCerrar.TabIndex = 4;
@@ -86,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(283, 329);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnAgregarCategoria);
             this.Controls.Add(this.label2);

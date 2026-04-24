@@ -49,9 +49,9 @@
             // gridCategoria
             // 
             this.gridCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridCategoria.Location = new System.Drawing.Point(18, 128);
+            this.gridCategoria.Location = new System.Drawing.Point(18, 130);
             this.gridCategoria.Name = "gridCategoria";
-            this.gridCategoria.Size = new System.Drawing.Size(145, 150);
+            this.gridCategoria.Size = new System.Drawing.Size(165, 150);
             this.gridCategoria.TabIndex = 1;
             // 
             // btnModificarCat
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(308, 450);
             this.Controls.Add(this.btnCrearCat);
             this.Controls.Add(this.btnEliminarCat);
             this.Controls.Add(this.btnModificarCat);
