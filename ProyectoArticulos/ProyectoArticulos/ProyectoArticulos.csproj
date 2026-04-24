@@ -85,6 +85,12 @@
     <Compile Include="frmCrearCategoria.Designer.cs">
       <DependentUpon>frmCrearCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNuevaImg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNuevaImg.Designer.cs">
+      <DependentUpon>frmNuevaImg.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmOpciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCrearCategoria.resx">
       <DependentUpon>frmCrearCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNuevaImg.resx">
+      <DependentUpon>frmNuevaImg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOpciones.resx">
       <DependentUpon>frmOpciones.cs</DependentUpon>

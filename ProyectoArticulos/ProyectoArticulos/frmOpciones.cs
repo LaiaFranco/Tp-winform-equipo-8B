@@ -241,6 +241,18 @@ namespace ProyectoArticulos
             frmCategoria categoria = new frmCategoria();
             categoria.ShowDialog(this);
         }
+
+        private void btnNuevaImagen_Click(object sender, EventArgs e)
+        {
+            //btnNuevaImagen
+
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo articulo = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmNuevaImg nuevaImg = new frmNuevaImg();
+
+            nuevaImg.ShowDialog(this);
+        }
     }
 
 }
