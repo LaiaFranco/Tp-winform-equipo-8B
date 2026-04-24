@@ -67,8 +67,9 @@ namespace negocio
 
             try {
 
-                datos.setearConsulta("UPDATE CATEGORIAS SET Descripcion = @descripcion");
+                datos.setearConsulta("UPDATE CATEGORIAS SET Descripcion = @descripcion WHERE Id = @id");
 
+                datos.setearParametro("@id", nuevaCategoria.Id);
                 datos.setearParametro("@descripcion", nuevaCategoria.Descripcion);
 
                 datos.ejecutarAccion();

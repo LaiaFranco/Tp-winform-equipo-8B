@@ -41,5 +41,10 @@ namespace ProyectoArticulos
             frmCrearCategoria modificar = new frmCrearCategoria();
             modificar.ShowDialog(this);
         }
+
+        private void btnEliminarCat_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

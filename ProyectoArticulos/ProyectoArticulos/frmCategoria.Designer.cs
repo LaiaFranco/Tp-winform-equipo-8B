@@ -72,6 +72,7 @@
             this.btnEliminarCat.TabIndex = 3;
             this.btnEliminarCat.Text = "Eliminar";
             this.btnEliminarCat.UseVisualStyleBackColor = true;
+            this.btnEliminarCat.Click += new System.EventHandler(this.btnEliminarCat_Click);
             // 
             // btnCrearCat
             // 
