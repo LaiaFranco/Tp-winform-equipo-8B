@@ -68,8 +68,6 @@ namespace ProyectoArticulos
            
             CategoriaNegocio CatNego = new CategoriaNegocio();
 
-           
-
             if (categoria == null)
             {
                 Categoria Cat = new Categoria();

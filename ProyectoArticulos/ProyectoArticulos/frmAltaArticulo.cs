@@ -124,6 +124,7 @@ namespace ProyectoArticulos
                 articulo.CodigoDeArtculo = txtCodigo.Text.ToUpper();
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
+
                 if (articulo.Imagen == null)
                     articulo.Imagen = new Imagen(); 
                 articulo.Imagen.UrlImagen = txtURLImagen.Text;

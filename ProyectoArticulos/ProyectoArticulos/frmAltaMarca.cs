@@ -67,5 +67,33 @@ namespace ProyectoArticulos
             }
            
         }
+
+        
+
+        private void EnableButton()
+        {
+            if(txtMarca.Text == "")
+            {
+                btnAgregar.Enabled = false;
+            }
+            else
+            {
+                btnAgregar.Enabled = true; 
+            }
+
+        }
+
+        private void frmAltaMarca_Load(object sender, EventArgs e)
+        {
+            EnableButton(); 
+           
+
+        }
+
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+            EnableButton();
+
+        }
     }
 }

@@ -118,7 +118,7 @@ namespace negocio
             {
                 datos.setearConsulta("DELETE FROM MARCAS WHERE Id = @id");
                 datos.setearParametro("@id",id);
-
+                datos.ejecutarAccion(); 
             }
             catch (Exception ex)
             {

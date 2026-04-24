@@ -69,5 +69,10 @@ namespace ProyectoArticulos
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void gridCategoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

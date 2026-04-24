@@ -39,26 +39,31 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 55);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(101, 93);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 31);
+            this.label1.Size = new System.Drawing.Size(226, 37);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Categoria";
+            this.label1.Text = "CATEGORIAS";
             // 
             // gridCategoria
             // 
             this.gridCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridCategoria.Location = new System.Drawing.Point(18, 130);
+            this.gridCategoria.Location = new System.Drawing.Point(76, 163);
+            this.gridCategoria.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridCategoria.Name = "gridCategoria";
-            this.gridCategoria.Size = new System.Drawing.Size(165, 150);
+            this.gridCategoria.RowHeadersWidth = 62;
+            this.gridCategoria.Size = new System.Drawing.Size(251, 231);
             this.gridCategoria.TabIndex = 1;
+            this.gridCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCategoria_CellContentClick);
             // 
             // btnModificarCat
             // 
-            this.btnModificarCat.Location = new System.Drawing.Point(108, 332);
+            this.btnModificarCat.Location = new System.Drawing.Point(162, 511);
+            this.btnModificarCat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModificarCat.Name = "btnModificarCat";
-            this.btnModificarCat.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarCat.Size = new System.Drawing.Size(112, 35);
             this.btnModificarCat.TabIndex = 2;
             this.btnModificarCat.Text = "Modificar";
             this.btnModificarCat.UseVisualStyleBackColor = true;
@@ -66,9 +71,10 @@
             // 
             // btnEliminarCat
             // 
-            this.btnEliminarCat.Location = new System.Drawing.Point(199, 332);
+            this.btnEliminarCat.Location = new System.Drawing.Point(298, 511);
+            this.btnEliminarCat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEliminarCat.Name = "btnEliminarCat";
-            this.btnEliminarCat.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarCat.Size = new System.Drawing.Size(112, 35);
             this.btnEliminarCat.TabIndex = 3;
             this.btnEliminarCat.Text = "Eliminar";
             this.btnEliminarCat.UseVisualStyleBackColor = true;
@@ -76,9 +82,10 @@
             // 
             // btnCrearCat
             // 
-            this.btnCrearCat.Location = new System.Drawing.Point(18, 332);
+            this.btnCrearCat.Location = new System.Drawing.Point(27, 511);
+            this.btnCrearCat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCrearCat.Name = "btnCrearCat";
-            this.btnCrearCat.Size = new System.Drawing.Size(75, 23);
+            this.btnCrearCat.Size = new System.Drawing.Size(112, 35);
             this.btnCrearCat.TabIndex = 4;
             this.btnCrearCat.Text = "Crear";
             this.btnCrearCat.UseVisualStyleBackColor = true;
@@ -86,15 +93,19 @@
             // 
             // frmCategoria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 450);
+            this.ClientSize = new System.Drawing.Size(462, 594);
             this.Controls.Add(this.btnCrearCat);
             this.Controls.Add(this.btnEliminarCat);
             this.Controls.Add(this.btnModificarCat);
             this.Controls.Add(this.gridCategoria);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCategoria";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCategoria";
             this.Load += new System.EventHandler(this.frmCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridCategoria)).EndInit();
