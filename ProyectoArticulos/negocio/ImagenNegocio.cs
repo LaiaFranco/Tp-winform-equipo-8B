@@ -44,10 +44,27 @@ namespace negocio
             }
         }
 
+        public void agregar(Imagen imagen)
+        {
+             AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO IMAGENES(IdMarca,ImagenUrl)VALUES(@idMarca,@url)");
+                datos.setearParametro("@idMarca", imagen.IdArticulo); 
+                datos.setearParametro("@url",imagen.UrlImagen);
+                datos.ejecutarAccion(); 
+            }
+            catch (Exception ex)
+            {
 
-
-
-
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion(); 
+            }
+            
+        }
     }
 
 

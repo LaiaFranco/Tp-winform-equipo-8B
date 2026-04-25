@@ -39,6 +39,7 @@ namespace ProyectoArticulos
 
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
+            EnableButton(); 
             cargarComboMarca();
             cargarComboCategoria();
 
@@ -91,7 +92,7 @@ namespace ProyectoArticulos
 
         private void txtPrecio_TextChanged(object sender, EventArgs e)
         {
-
+            EnableButton(); 
         }
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
@@ -111,6 +112,14 @@ namespace ProyectoArticulos
 
             // Bloquear todo lo demás
             e.Handled = true;
+        }
+        private void EnableButton()
+        {
+            btnGuardar.Enabled =
+            txtNombre.Text != "" &&
+            txtCodigo.Text != "" &&
+            txtDescripcion.Text != "" &&
+            txtPrecio.Text != "";
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -159,9 +168,9 @@ namespace ProyectoArticulos
                             datosImg.ejecutarAccion();
                         }
 
-                        MessageBox.Show("Agregado exitosamente");
-                    }
-
+                    MessageBox.Show("Agregado exitosamente");
+                }
+           
                 Close(); 
 
             }
@@ -206,6 +215,22 @@ namespace ProyectoArticulos
         private void txtURLImagen_Leave(object sender, EventArgs e)
         {
             cargarImagen(txtURLImagen.Text);
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            EnableButton(); 
+
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            EnableButton(); 
+        }
+
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+            EnableButton(); 
         }
     }
 }

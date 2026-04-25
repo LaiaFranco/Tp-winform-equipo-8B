@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 
+
 namespace negocio
 {
     public class MarcaNegocio
@@ -47,11 +48,10 @@ namespace negocio
         {
             AccesoDatos datos = new AccesoDatos();
             try
-            {
-                string consulta = "SELECT COUNT(*) FROM MARCAS WHERE Descripcion = @descripcion";
-                datos.setearConsulta(consulta);
-                datos.setearParametro("@descripcion", marca.Descripcion);
-                return (int)datos.EjecutarScalar() > 0;
+            { 
+                datos.setearConsulta(@"SELECT COUNT(*) FROM ARTICULOS WHERE IdMarca = @id");
+                datos.setearParametro("@id",marca.Id);
+                return (int)datos.EjecutarScalar()>0;
             }
             catch (Exception ex)
             {
@@ -65,7 +65,6 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-
                 if (!existe(nuevo))
                 {
                     datos.setearConsulta("INSERT INTO MARCAS (Descripcion) VALUES (@descripcion)");
@@ -111,14 +110,20 @@ namespace negocio
 
         }
 
-        public void Eliminar(int id)
+        public void Eliminar(Marca marca)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("DELETE FROM MARCAS WHERE Id = @id");
-                datos.setearParametro("@id",id);
-                datos.ejecutarAccion(); 
+                if (!existe(marca)) { 
+                    datos.setearConsulta("DELETE FROM MARCAS WHERE Id = @id");
+                    datos.setearParametro("@id", marca.Id);
+                    datos.ejecutarAccion();
+                }
+                else
+                {
+                    throw new Exception("No se puede eliminar porque hay articulos asociados"); 
+                }
             }
             catch (Exception ex)
             {
