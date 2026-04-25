@@ -40,7 +40,7 @@ namespace ProyectoArticulos
 
                 if (txtMarca.Text == "")
                 {
-                    MessageBox.Show("EL CAMPO ESTA VACIO BURRO ");
+                    MessageBox.Show("El campo esta vacio, Intentelo nuevamente... ");
                 }
                 else if (marca.Id != 0)
                 {
