@@ -63,7 +63,6 @@
             this.btnGuardar.TabIndex = 0;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.EnabledChanged += new System.EventHandler(this.btnGuardar_EnabledChanged);
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // lblTitulo
@@ -153,6 +152,7 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(260, 26);
             this.txtCodigo.TabIndex = 10;
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             // 
             // txtDescripcion
             // 
@@ -160,6 +160,7 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(260, 26);
             this.txtDescripcion.TabIndex = 11;
+            this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
             // txtNombre
             // 
@@ -167,6 +168,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(260, 26);
             this.txtNombre.TabIndex = 12;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtPrecio
             // 
