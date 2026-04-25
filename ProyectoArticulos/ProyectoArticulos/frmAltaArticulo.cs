@@ -39,6 +39,7 @@ namespace ProyectoArticulos
 
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
+            Enable(); 
             cargarComboMarca();
             cargarComboCategoria();
 
@@ -111,6 +112,16 @@ namespace ProyectoArticulos
 
             // Bloquear todo lo demás
             e.Handled = true;
+        }
+        private void Enable()
+        {
+            if(txtCodigo.Text == "" && txtNombre.Text == "" && txtPrecio.Text == "" && txtDescripcion.Text == "")
+            {
+                btnGuardar.Enabled = false; 
+            }else
+            {
+                btnGuardar.Enabled = true; 
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -205,5 +216,11 @@ namespace ProyectoArticulos
         {
             cargarImagen(txtURLImagen.Text);
         }
+
+        private void btnGuardar_EnabledChanged(object sender, EventArgs e)
+        {
+            Enable(); 
+        }
+        
     }
 }
