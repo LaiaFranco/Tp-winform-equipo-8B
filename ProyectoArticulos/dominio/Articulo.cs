@@ -30,5 +30,9 @@ namespace dominio
         
         [DisplayName("Precio")]
         public decimal Precio { get; set; }
+
+
     }
+
+
 }

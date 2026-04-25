@@ -142,23 +142,25 @@ namespace ProyectoArticulos
                 }
                 else
                 {
-                    negocio.Agregar(articulo);
 
-                    AccesoDatos datos = new AccesoDatos();
-                    datos.setearConsulta("SELECT MAX(Id) FROM ARTICULOS");
-                    int idArt = (int)datos.EjecutarScalar();
+                  
+                        negocio.Agregar(articulo);
 
-                    if (!string.IsNullOrEmpty(txtURLImagen.Text))
-                    {
-                        AccesoDatos datosImg = new AccesoDatos();
-                        datosImg.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idArticulo, @url)");
-                        datosImg.setearParametro("@idArticulo", idArt);
-                        datosImg.setearParametro("@url", txtURLImagen.Text);
-                        datosImg.ejecutarAccion();
+                        AccesoDatos datos = new AccesoDatos();
+                        datos.setearConsulta("SELECT MAX(Id) FROM ARTICULOS");
+                        int idArt = (int)datos.EjecutarScalar();
+
+                        if (!string.IsNullOrEmpty(txtURLImagen.Text))
+                        {
+                            AccesoDatos datosImg = new AccesoDatos();
+                            datosImg.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idArticulo, @url)");
+                            datosImg.setearParametro("@idArticulo", idArt);
+                            datosImg.setearParametro("@url", txtURLImagen.Text);
+                            datosImg.ejecutarAccion();
+                        }
+
+                        MessageBox.Show("Agregado exitosamente");
                     }
-
-                    MessageBox.Show("Agregado exitosamente");
-                }
 
                 Close(); 
 
