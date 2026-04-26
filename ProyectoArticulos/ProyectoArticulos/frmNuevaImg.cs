@@ -14,7 +14,7 @@ namespace ProyectoArticulos
 {
     public partial class frmNuevaImg : Form
     {
-        private Imagen imagen = null; 
+ 
         
         public frmNuevaImg()
         {
@@ -38,15 +38,19 @@ namespace ProyectoArticulos
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             ImagenNegocio negocio = new ImagenNegocio();
+
             try
             {
-                if (imagen == null)
-                    imagen = new Imagen();
+               
 
-                imagen.UrlImagen = txturlmg.Text;
-                imagen.IdArticulo = (int)cbxCodigo.SelectedValue;
-                negocio.agregar(imagen);
-                MessageBox.Show("Se agrego exitosamente!"); 
+                     Imagen  imagen = new Imagen();
+
+                    imagen.UrlImagen = txturlmg.Text;
+                    imagen.IdArticulo = (int)cbxCodigo.SelectedValue;
+                    negocio.agregar(imagen);
+                    MessageBox.Show("Se agrego exitosamente!");
+
+              
 
             }
             catch (Exception ex)
@@ -61,6 +65,11 @@ namespace ProyectoArticulos
         private void txturlmg_TextChanged(object sender, EventArgs e)
         {
             EnableButton(); 
+        }
+
+        private void cbxCodigo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

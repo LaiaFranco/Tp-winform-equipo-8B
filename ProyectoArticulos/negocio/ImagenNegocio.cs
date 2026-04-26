@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Collections.Generic;
 using dominio;
-
 
 namespace negocio
 {
@@ -16,27 +9,20 @@ namespace negocio
         {
             List<Imagen> lista = new List<Imagen>();
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
-                datos.setearConsulta("select Id,IdArticulo, ImagenUrl from IMAGENES");
+                datos.setearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES");
                 datos.ejecutarLectura();
-
                 while (datos.Lector.Read())
                 {
-                    Imagen aux = new Imagen();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.IdArticulo = (int)datos.Lector["IdArticulo"]; 
-                    aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
-
-                    lista.Add(aux);
+                    lista.Add(new Imagen
+                    {
+                        Id = (int)datos.Lector["Id"],
+                        IdArticulo = (int)datos.Lector["IdArticulo"],
+                        UrlImagen = (string)datos.Lector["ImagenUrl"]
+                    });
                 }
-
                 return lista;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {
@@ -46,28 +32,43 @@ namespace negocio
 
         public void agregar(Imagen imagen)
         {
-             AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO IMAGENES(IdArticulo,ImagenUrl)VALUES(@idArticulo,@url)");
-                datos.setearParametro("@idArticulo", imagen.IdArticulo); 
-                datos.setearParametro("@url",imagen.UrlImagen);
-                datos.ejecutarAccion(); 
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
+                datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idArticulo, @url)");
+                datos.setearParametro("@idArticulo", imagen.IdArticulo);
+                datos.setearParametro("@url", imagen.UrlImagen);
+                datos.ejecutarAccion();
             }
             finally
             {
-                datos.cerrarConexion(); 
+                datos.cerrarConexion();
             }
-            
+        }
+
+        public List<Imagen> ListarPorArticulo(Articulo art)
+        {
+            List<Imagen> lista = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT Id, ImagenUrl FROM IMAGENES WHERE IdArticulo = @idArticulo");
+                datos.setearParametro("@idArticulo", art.Id);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    lista.Add(new Imagen
+                    {
+                        Id = (int)datos.Lector["Id"],
+                        UrlImagen = (string)datos.Lector["ImagenUrl"]
+                    });
+                }
+                return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
-
-
-
- 
 }

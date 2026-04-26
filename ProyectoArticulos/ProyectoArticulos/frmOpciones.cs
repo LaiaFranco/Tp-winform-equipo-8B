@@ -15,6 +15,7 @@ namespace ProyectoArticulos
     public partial class frmOpciones : Form
     {
         private List<Articulo> listaArticulos;
+        private ImagenNegocio ImgNegocio = new ImagenNegocio();
         public frmOpciones()
         {
             InitializeComponent();
@@ -28,6 +29,13 @@ namespace ProyectoArticulos
                 listaArticulos = negocio.Listar();
                 dgvArticulos.DataSource = listaArticulos;
                 ocultarColumnas();
+
+                if (listaArticulos.Count > 0)
+                {
+                    Articulo artInit = listaArticulos[0];
+                    dgvArticulos.Rows[0].Selected = true;
+                }
+
                 cargarImagen(listaArticulos[0].Imagen.UrlImagen);
             }
             catch (Exception ex)
@@ -67,8 +75,28 @@ namespace ProyectoArticulos
             cboCampo.Items.Add("Categoria");
             cboCampo.Items.Add("Precio");
 
+            Articulo artInit = ObtenerArticuloActualODefecto();
+
+            if (artInit != null)
+                selectImg.DataSource = ImgNegocio.ListarPorArticulo(artInit);
+                selectImg.DisplayMember = "Imgaenes"; 
+                selectImg.ValueMember = "Id";
+        
+       
         }
 
+
+        private Articulo ObtenerArticuloActualODefecto()
+        {
+            if (dgvArticulos.CurrentRow != null)
+                return (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            var origen = dgvArticulos.DataSource as List<Articulo>;
+            if (origen != null && origen.Count > 0)
+                return origen[0];
+
+            return null; // o lanzar excepción
+        }
 
         private void cargarImagen(string imagen)
         {
@@ -197,6 +225,7 @@ namespace ProyectoArticulos
             string opcion = cboCampo.SelectedItem.ToString(); 
 
             cblCriterio.Items.Clear();
+
             if(opcion == "Precio")
             {
                 cblCriterio.Items.Add("Mayor a");
@@ -252,6 +281,11 @@ namespace ProyectoArticulos
             frmNuevaImg nuevaImg = new frmNuevaImg();
 
             nuevaImg.ShowDialog(this);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

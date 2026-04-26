@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using dominio; 
+﻿using System.Collections.Generic;
+using dominio;
 
 namespace negocio
 {
@@ -13,26 +9,34 @@ namespace negocio
         {
             List<Categoria> lista = new List<Categoria>();
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
-                datos.setearConsulta("select Id,Descripcion from CATEGORIAS");
+                datos.setearConsulta("SELECT Id, Descripcion FROM CATEGORIAS");
                 datos.ejecutarLectura();
-
                 while (datos.Lector.Read())
                 {
-                    Categoria aux = new Categoria();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
-
-                    lista.Add(aux);
+                    lista.Add(new Categoria
+                    {
+                        Id = (int)datos.Lector["Id"],
+                        Descripcion = (string)datos.Lector["Descripcion"]
+                    });
                 }
-
                 return lista;
             }
-            catch (Exception ex)
+            finally
             {
-                throw ex;
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Agregar(Categoria nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO CATEGORIAS (Descripcion) VALUES (@descripcion)");
+                datos.setearParametro("@descripcion", nueva.Descripcion);
+                datos.ejecutarAccion();
             }
             finally
             {
@@ -40,76 +44,35 @@ namespace negocio
             }
         }
 
-        public void Agregar(Categoria nuevaCategoria)
-        {
-
-            AccesoDatos datos = new AccesoDatos();
-
-           try {
-
-                datos.setearConsulta("INSERT INTO CATEGORIAS (Descripcion)" + 
-                    "VALUES(@descripcion)");
-
-                datos.setearParametro("@descripcion",nuevaCategoria.Descripcion);
-                
-                datos.ejecutarAccion();
-
-            }catch(Exception ex){
-                throw ex;
-            }
-            finally { datos.cerrarConexion();}
-
-        }
-
-        public void Actualizar(Categoria nuevaCategoria)
+        public void Actualizar(Categoria categoria)
         {
             AccesoDatos datos = new AccesoDatos();
-
-            try {
-
+            try
+            {
                 datos.setearConsulta("UPDATE CATEGORIAS SET Descripcion = @descripcion WHERE Id = @id");
-
-                datos.setearParametro("@id", nuevaCategoria.Id);
-                datos.setearParametro("@descripcion", nuevaCategoria.Descripcion);
-
+                datos.setearParametro("@id", categoria.Id);
+                datos.setearParametro("@descripcion", categoria.Descripcion);
                 datos.ejecutarAccion();
-           
-
-            } catch (Exception ex) {
-
-                throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
             }
-
         }
 
         public void Eliminar(int id)
         {
-
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
-
                 datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
-
             }
-            catch (Exception ex)
+            finally
             {
-                throw ex;
+                datos.cerrarConexion();
             }
-            finally { datos.cerrarConexion(); }
-
         }
-
-
     }
-
-    
 }
-
