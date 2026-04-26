@@ -91,6 +91,40 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Articulo>listarIdxCodigo()
+        {
+            List<Articulo> articulos = new List<Articulo>();
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("SELECT Id,Codigo from ARTICULOS");
+                datos.ejecutarLectura();
+
+                if (datos.Lector != null)
+                {
+                    while (datos.Lector.Read())
+                    {
+                        Articulo nuevoArticulo = new Articulo();
+
+                        nuevoArticulo.Id = (int)(datos.Lector["Id"]);
+                        nuevoArticulo.CodigoDeArtculo = datos.Lector["Codigo"].ToString();
+                   
+                        articulos.Add(nuevoArticulo);
+                    }
+                }
+                return articulos; 
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+
+        }
        
 
         public void Agregar(Articulo nuevo)
