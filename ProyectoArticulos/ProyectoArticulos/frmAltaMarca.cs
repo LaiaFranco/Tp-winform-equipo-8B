@@ -19,7 +19,12 @@ namespace ProyectoArticulos
         {
             InitializeComponent();
         }
-
+        public frmAltaMarca(Marca nuevo)
+        {
+            InitializeComponent();
+            marca = nuevo;
+            Text = "Modificar Marca";
+        }
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -33,39 +38,32 @@ namespace ProyectoArticulos
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             MarcaNegocio negocio = new MarcaNegocio();
-            try
+            if (marca == null)
             {
-                if (marca == null)
-                   marca = new Marca();
+                Marca mar = new Marca();
+                mar.Descripcion = txtMarca.Text;
 
-                if (txtMarca.Text == "")
-                {
-                    MessageBox.Show("El campo esta vacio, Intentelo nuevamente... ");
-                }
-                else if (marca.Id != 0)
-                {
-                    negocio.Modificar(marca);
-                    MessageBox.Show("Modificado exitosamente!!");
-                    Close();
+                negocio.Agregar(mar);
 
-                }
-                else
-                {
-                    marca.Descripcion = txtMarca.Text.ToUpper();
-                    negocio.Agregar(marca);
-                    MessageBox.Show("Agregado exitosamente!!");
-                }
-                
+                txtMarca.Text = "";
+
+                MessageBox.Show("Marca creada exitosamente");
             }
-            catch (Exception ex)
+            if (marca != null)
             {
-               MessageBox.Show(ex.ToString());
+
+                marca.Descripcion = txtMarca.Text;
+
+                negocio.Modificar(marca);
+
+
+                MessageBox.Show("Marca actulizada exitosamente");
             }
-            finally
-            {
-                Close(); 
-            }
-           
+
+
+            Close();
+
+
         }
 
         
@@ -86,7 +84,10 @@ namespace ProyectoArticulos
         private void frmAltaMarca_Load(object sender, EventArgs e)
         {
             EnableButton(); 
-           
+            if(marca != null)
+            {
+                txtMarca.Text = marca.Descripcion; 
+            }
 
         }
 

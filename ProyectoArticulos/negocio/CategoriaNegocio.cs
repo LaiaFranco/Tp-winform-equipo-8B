@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
-using dominio;
+﻿using dominio;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace negocio
 {
@@ -60,13 +62,35 @@ namespace negocio
             }
         }
 
-        public void Eliminar(int id)
+        private bool existe(Categoria cat)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                datos.setearConsulta("SELECT COUNT(*) FROM ARTICULOS WHERE IdCategoria = @id");
+                datos.setearParametro("@id", cat.Id);
+                return (int)datos.EjecutarScalar() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Eliminar(Categoria cat)
+        {
+            if (existe(cat))
+                throw new System.Exception("No se puede eliminar porque hay artículos asociados");
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
                 datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @id");
-                datos.setearParametro("@id", id);
+                datos.setearParametro("@id", cat.Id);
                 datos.ejecutarAccion();
             }
             finally

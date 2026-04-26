@@ -60,7 +60,7 @@ namespace ProyectoArticulos
                 DialogResult respuesta = MessageBox.Show("¿Estas seguro/a de querer eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (respuesta == DialogResult.Yes)
                 {
-                    CatNegocio.Eliminar(seleccionado.Id);
+                    CatNegocio.Eliminar(seleccionado);
                     cargar();
                 }
             }

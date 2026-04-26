@@ -54,7 +54,7 @@ namespace ProyectoArticulos
         {
             Marca marca;
             marca = (Marca)dgvMarca.CurrentRow.DataBoundItem;
-            frmAltaMarca modificar = new frmAltaMarca();
+            frmAltaMarca modificar = new frmAltaMarca(marca);
             modificar.ShowDialog(this);
             cargar(); 
         }

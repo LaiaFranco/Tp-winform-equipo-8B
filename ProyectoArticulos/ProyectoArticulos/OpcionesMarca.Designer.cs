@@ -61,7 +61,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(182, 361);
+            this.btnModificar.Location = new System.Drawing.Point(191, 362);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(100, 32);
             this.btnModificar.TabIndex = 2;

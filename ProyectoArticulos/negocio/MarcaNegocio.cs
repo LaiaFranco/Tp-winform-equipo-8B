@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using dominio;
 
 namespace negocio
@@ -38,6 +39,10 @@ namespace negocio
                 datos.setearParametro("@id", marca.Id);
                 return (int)datos.EjecutarScalar() > 0;
             }
+            catch(Exception ex)
+            {
+                throw ex; 
+            }
             finally
             {
                 datos.cerrarConexion();
@@ -71,6 +76,10 @@ namespace negocio
                 datos.setearParametro("@nombre", marca.Descripcion);
                 datos.setearParametro("@id", marca.Id);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex; 
             }
             finally
             {

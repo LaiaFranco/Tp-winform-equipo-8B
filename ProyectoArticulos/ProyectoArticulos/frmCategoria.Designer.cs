@@ -106,7 +106,7 @@
             this.MinimizeBox = false;
             this.Name = "frmCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmCategoria";
+            this.Text = "Categoria";
             this.Load += new System.EventHandler(this.frmCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridCategoria)).EndInit();
             this.ResumeLayout(false);

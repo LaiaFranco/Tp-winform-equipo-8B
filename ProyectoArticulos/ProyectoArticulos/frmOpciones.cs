@@ -1,7 +1,9 @@
 ﻿using dominio;
 using negocio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ProyectoArticulos
@@ -10,6 +12,7 @@ namespace ProyectoArticulos
     {
         private List<Articulo> listaArticulos;
         private ImagenNegocio imgNegocio = new ImagenNegocio();
+        private List<Imagen> imagenesDelArticuloActual;
 
         public frmOpciones()
         {
@@ -42,9 +45,13 @@ namespace ProyectoArticulos
         private void cargarComboImagenes(Articulo articulo)
         {
             if (articulo == null) return;
-            selectImg.DataSource = imgNegocio.ListarPorArticulo(articulo);
-            selectImg.DisplayMember = "UrlImagen";
+            imagenesDelArticuloActual = imgNegocio.ListarPorArticulo(articulo);
+            var items = imagenesDelArticuloActual.Select((img, idx) => new { Id = img.Id, Display = $"Imagen {idx + 1}" }).ToList();
+
+            selectImg.DataSource = items;
+            selectImg.DisplayMember = "Display";
             selectImg.ValueMember = "Id";
+
             if (selectImg.Items.Count > 0)
                 selectImg.SelectedIndex = 0;
         }
@@ -89,8 +96,14 @@ namespace ProyectoArticulos
 
         private void selectImg_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectImg.SelectedItem is Imagen imgSeleccionada)
-                cargarImagen(imgSeleccionada.UrlImagen);
+           
+            if (selectImg.SelectedValue != null && imagenesDelArticuloActual != null)
+            {
+                int idSeleccionado = (int)selectImg.SelectedValue;
+                Imagen img = imagenesDelArticuloActual.FirstOrDefault(i => i.Id == idSeleccionado);
+                if (img != null)
+                    cargarImagen(img.UrlImagen);
+            }
         }
 
         private void frmOpciones_Load(object sender, EventArgs e)
