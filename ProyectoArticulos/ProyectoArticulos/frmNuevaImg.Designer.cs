@@ -80,7 +80,7 @@
             this.cbxCodigo.Name = "cbxCodigo";
             this.cbxCodigo.Size = new System.Drawing.Size(121, 21);
             this.cbxCodigo.TabIndex = 4;
-            this.cbxCodigo.SelectedIndexChanged += new System.EventHandler(this.cbxCodigo_SelectedIndexChanged);
+           
             // 
             // frmNuevaImg
             // 

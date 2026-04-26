@@ -58,7 +58,7 @@
             // 
             this.btnAgregar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAgregar.Location = new System.Drawing.Point(17, 298);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(88, 25);
             this.btnAgregar.TabIndex = 4;
@@ -89,7 +89,7 @@
             this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvArticulos.GridColor = System.Drawing.SystemColors.Control;
             this.dgvArticulos.Location = new System.Drawing.Point(17, 40);
-            this.dgvArticulos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvArticulos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.ReadOnly = true;
@@ -115,18 +115,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pctImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pctImagen.Location = new System.Drawing.Point(570, 40);
-            this.pctImagen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pctImagen.Margin = new System.Windows.Forms.Padding(2);
             this.pctImagen.Name = "pctImagen";
             this.pctImagen.Size = new System.Drawing.Size(209, 237);
             this.pctImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctImagen.TabIndex = 6;
             this.pctImagen.TabStop = false;
+          
             // 
             // btnModificar
             // 
             this.btnModificar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnModificar.Location = new System.Drawing.Point(116, 298);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(87, 25);
             this.btnModificar.TabIndex = 7;
@@ -138,7 +139,7 @@
             // 
             this.btnEliminarFisico.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnEliminarFisico.Location = new System.Drawing.Point(209, 298);
-            this.btnEliminarFisico.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminarFisico.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarFisico.Name = "btnEliminarFisico";
             this.btnEliminarFisico.Size = new System.Drawing.Size(84, 25);
             this.btnEliminarFisico.TabIndex = 8;
@@ -195,7 +196,7 @@
             // 
             this.cboCampo.FormattingEnabled = true;
             this.cboCampo.Location = new System.Drawing.Point(73, 421);
-            this.cboCampo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboCampo.Margin = new System.Windows.Forms.Padding(2);
             this.cboCampo.Name = "cboCampo";
             this.cboCampo.Size = new System.Drawing.Size(131, 21);
             this.cboCampo.TabIndex = 11;
@@ -215,11 +216,11 @@
             // 
             this.cblCriterio.FormattingEnabled = true;
             this.cblCriterio.Location = new System.Drawing.Point(257, 419);
-            this.cblCriterio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cblCriterio.Margin = new System.Windows.Forms.Padding(2);
             this.cblCriterio.Name = "cblCriterio";
             this.cblCriterio.Size = new System.Drawing.Size(115, 21);
             this.cblCriterio.TabIndex = 13;
-            this.cblCriterio.SelectedIndexChanged += new System.EventHandler(this.cblCriterio_SelectedIndexChanged);
+            
             // 
             // lblFiltro
             // 
@@ -234,7 +235,7 @@
             // txtFiltro
             // 
             this.txtFiltro.Location = new System.Drawing.Point(426, 419);
-            this.txtFiltro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(128, 20);
             this.txtFiltro.TabIndex = 15;
@@ -243,7 +244,7 @@
             // 
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnBuscar.Location = new System.Drawing.Point(570, 411);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(95, 25);
             this.btnBuscar.TabIndex = 16;
@@ -269,7 +270,7 @@
             this.selectImg.Name = "selectImg";
             this.selectImg.Size = new System.Drawing.Size(185, 21);
             this.selectImg.TabIndex = 18;
-            this.selectImg.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+       
             // 
             // frmOpciones
             // 
@@ -294,7 +295,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmOpciones";

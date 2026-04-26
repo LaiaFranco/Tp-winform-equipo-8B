@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using dominio;
 
 namespace negocio
@@ -23,6 +24,10 @@ namespace negocio
                     });
                 }
                 return lista;
+
+            }catch(Exception ex)
+            {
+                throw ex;
             }
             finally
             {
@@ -39,6 +44,10 @@ namespace negocio
                 datos.setearParametro("@idArticulo", imagen.IdArticulo);
                 datos.setearParametro("@url", imagen.UrlImagen);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
@@ -64,6 +73,10 @@ namespace negocio
                     });
                 }
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
