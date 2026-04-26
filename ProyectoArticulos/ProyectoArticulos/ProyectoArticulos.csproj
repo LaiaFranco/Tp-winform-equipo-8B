@@ -61,12 +61,6 @@
     <Compile Include="FormMarca.Designer.cs">
       <DependentUpon>FormMarca.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAltaArticulo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAltaArticulo.Designer.cs">
-      <DependentUpon>frmAltaArticulo.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAltaMarca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,9 +104,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMarca.resx">
       <DependentUpon>FormMarca.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAltaArticulo.resx">
-      <DependentUpon>frmAltaArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAltaMarca.resx">
       <DependentUpon>frmAltaMarca.cs</DependentUpon>
