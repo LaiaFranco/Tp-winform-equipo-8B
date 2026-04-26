@@ -48,15 +48,17 @@
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnNuevaImagen = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctImagen)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAgregar.Location = new System.Drawing.Point(12, 458);
+            this.btnAgregar.Location = new System.Drawing.Point(26, 458);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(132, 38);
             this.btnAgregar.TabIndex = 4;
@@ -86,7 +88,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvArticulos.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvArticulos.Location = new System.Drawing.Point(12, 74);
+            this.dgvArticulos.Location = new System.Drawing.Point(26, 62);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.ReadOnly = true;
@@ -101,7 +103,7 @@
             this.dgvArticulos.RowHeadersWidth = 62;
             this.dgvArticulos.RowTemplate.Height = 28;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(830, 365);
+            this.dgvArticulos.Size = new System.Drawing.Size(803, 365);
             this.dgvArticulos.TabIndex = 5;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
@@ -111,9 +113,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pctImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pctImagen.Location = new System.Drawing.Point(908, 74);
+            this.pctImagen.Location = new System.Drawing.Point(967, 62);
             this.pctImagen.Name = "pctImagen";
-            this.pctImagen.Size = new System.Drawing.Size(334, 363);
+            this.pctImagen.Size = new System.Drawing.Size(456, 281);
             this.pctImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctImagen.TabIndex = 6;
             this.pctImagen.TabStop = false;
@@ -121,7 +123,7 @@
             // btnModificar
             // 
             this.btnModificar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnModificar.Location = new System.Drawing.Point(164, 458);
+            this.btnModificar.Location = new System.Drawing.Point(174, 458);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(130, 38);
             this.btnModificar.TabIndex = 7;
@@ -148,8 +150,7 @@
             this.listarToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1370, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1477, 33);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -179,7 +180,7 @@
             // lblCampo
             // 
             this.lblCampo.AutoSize = true;
-            this.lblCampo.Location = new System.Drawing.Point(8, 538);
+            this.lblCampo.Location = new System.Drawing.Point(22, 656);
             this.lblCampo.Name = "lblCampo";
             this.lblCampo.Size = new System.Drawing.Size(64, 20);
             this.lblCampo.TabIndex = 10;
@@ -188,7 +189,7 @@
             // cboCampo
             // 
             this.cboCampo.FormattingEnabled = true;
-            this.cboCampo.Location = new System.Drawing.Point(78, 538);
+            this.cboCampo.Location = new System.Drawing.Point(110, 648);
             this.cboCampo.Name = "cboCampo";
             this.cboCampo.Size = new System.Drawing.Size(194, 28);
             this.cboCampo.TabIndex = 11;
@@ -197,7 +198,7 @@
             // lblCriterio
             // 
             this.lblCriterio.AutoSize = true;
-            this.lblCriterio.Location = new System.Drawing.Point(298, 542);
+            this.lblCriterio.Location = new System.Drawing.Point(310, 648);
             this.lblCriterio.Name = "lblCriterio";
             this.lblCriterio.Size = new System.Drawing.Size(67, 20);
             this.lblCriterio.TabIndex = 12;
@@ -206,7 +207,7 @@
             // cblCriterio
             // 
             this.cblCriterio.FormattingEnabled = true;
-            this.cblCriterio.Location = new System.Drawing.Point(372, 538);
+            this.cblCriterio.Location = new System.Drawing.Point(386, 645);
             this.cblCriterio.Name = "cblCriterio";
             this.cblCriterio.Size = new System.Drawing.Size(170, 28);
             this.cblCriterio.TabIndex = 13;
@@ -215,7 +216,7 @@
             // lblFiltro
             // 
             this.lblFiltro.AutoSize = true;
-            this.lblFiltro.Location = new System.Drawing.Point(567, 542);
+            this.lblFiltro.Location = new System.Drawing.Point(572, 651);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(48, 20);
             this.lblFiltro.TabIndex = 14;
@@ -223,7 +224,7 @@
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(621, 542);
+            this.txtFiltro.Location = new System.Drawing.Point(639, 645);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(190, 26);
             this.txtFiltro.TabIndex = 15;
@@ -231,7 +232,7 @@
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnBuscar.Location = new System.Drawing.Point(836, 532);
+            this.btnBuscar.Location = new System.Drawing.Point(855, 633);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(142, 38);
             this.btnBuscar.TabIndex = 16;
@@ -251,13 +252,24 @@
             this.btnNuevaImagen.UseVisualStyleBackColor = false;
             this.btnNuevaImagen.Click += new System.EventHandler(this.btnNuevaImagen_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(967, 381);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(452, 182);
+            this.dataGridView1.TabIndex = 18;
+            // 
             // frmOpciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1370, 585);
+            this.ClientSize = new System.Drawing.Size(1477, 700);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnNuevaImagen);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtFiltro);
@@ -284,6 +296,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctImagen)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,5 +320,6 @@
         private System.Windows.Forms.ToolStripMenuItem marcaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem1;
         private System.Windows.Forms.Button btnNuevaImagen;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
